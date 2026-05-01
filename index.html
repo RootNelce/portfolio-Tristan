@@ -55,7 +55,7 @@
         .tab-content { display: none; }
         .tab-content.active { display: block; }
         
-        /* Animation du fond d'écran (Ken Burns effect) */
+        /* Animation du fond d'écran dynamique */
         .bg-slideshow {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -70,11 +70,12 @@
             background-position: center;
             opacity: 0;
             transform: scale(1);
-            transition: opacity 3s ease-in-out, transform 8s linear;
+            /* Transition fluide de 2s pour s'intégrer parfaitement aux 5s d'intervalle */
+            transition: opacity 2s ease-in-out, transform 8s linear; 
         }
         .bg-slide.active {
             opacity: 1;
-            transform: scale(1.05);
+            transform: scale(1.05); /* Effet de léger zoom "Ken Burns" */
         }
 
         /* Style des boutons de navigation actifs */
@@ -93,23 +94,20 @@
 <body class="bg-stone-900 font-sans text-stone-800 selection:bg-amber-200 selection:text-stone-900 relative">
 
     <!-- ========================================== -->
-    <!-- DIAPORAMA DE FOND -->
+    <!-- DIAPORAMA DE FOND (Généré par Javascript) -->
     <!-- ========================================== -->
     <div class="bg-slideshow">
-        <!-- Image 1 : Datacenter -->
-        <div class="bg-slide active" style="background-image: url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=2000&q=80')"></div>
-        <!-- Image 2 : Cyber -->
-        <div class="bg-slide" style="background-image: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=2000&q=80')"></div>
-        <!-- Image 3 : Network -->
-        <div class="bg-slide" style="background-image: url('https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=2000&q=80')"></div>
-        <!-- Voile semi-transparent pour la lisibilité -->
-        <div class="absolute inset-0 bg-stone-100/40 backdrop-blur-[2px]"></div>
+        <!-- Le conteneur où les images vont défiler selon la page -->
+        <div id="slideshow-container" class="absolute inset-0"></div>
+        
+        <!-- Voile très léger pour adoucir le fond SANS FLOU, les images resteront nettes -->
+        <div class="absolute inset-0 bg-stone-900/30 pointer-events-none"></div>
     </div>
 
     <!-- ========================================== -->
     <!-- NAVIGATION MOBILE (Fixée en bas) -->
     <!-- ========================================== -->
-    <nav class="md:hidden fixed bottom-0 w-full z-40 border-t border-stone-800 flex justify-around pb-safe px-1 bg-stone-900/95 backdrop-blur-xl">
+    <nav class="md:hidden fixed bottom-0 w-full z-40 border-t border-stone-800 flex justify-around pb-safe px-1 bg-stone-900/95 backdrop-blur-sm">
         <button onclick="switchTab('accueil')" class="nav-btn-mobile active flex flex-col items-center justify-center w-full py-3 px-1 transition-colors text-stone-400 hover:text-stone-200" id="mob-btn-accueil">
             <i class="fa-solid fa-user text-xl mb-1 transition-transform"></i>
             <span class="text-[10px] font-bold tracking-widest uppercase">Profil</span>
@@ -135,14 +133,13 @@
     <!-- ========================================== -->
     <!-- NAVIGATION BUREAU (Sidebar gauche) -->
     <!-- ========================================== -->
-    <aside class="hidden md:flex w-72 flex-col fixed h-full shadow-2xl z-20 border-r border-white/10 bg-stone-900/95 backdrop-blur-xl">
+    <aside class="hidden md:flex w-72 flex-col fixed h-full shadow-2xl z-20 border-r border-white/10 bg-stone-900/95 backdrop-blur-sm">
         <div class="p-8 flex flex-col items-center border-b border-stone-800">
             <div class="w-28 h-28 rounded-full bg-stone-800 border-2 border-stone-700 flex items-center justify-center mb-4 overflow-hidden group">
                 <i class="fa-solid fa-user text-5xl text-stone-600 group-hover:scale-110 transition-transform duration-300"></i>
             </div>
             <div class="text-center">
                 <h1 class="text-xl font-bold text-white tracking-wider uppercase">Tristan GIRAUD</h1>
-                <p class="text-xs text-amber-500 mt-2 font-medium tracking-widest uppercase">Portfolio E4</p>
             </div>
         </div>
 
@@ -173,27 +170,29 @@
     <!-- ========================================== -->
     <!-- ZONE DE CONTENU PRINCIPAL -->
     <!-- ========================================== -->
-    <main class="flex-1 w-full z-10 relative md:ml-72 p-5 pb-24 pt-8 md:p-12 lg:p-16 overflow-y-auto min-h-screen bg-white/90 md:bg-white/85 backdrop-blur-lg">
+    <!-- Le fond principal (main) est transparent (bg-transparent). Le flou a été retiré. -->
+    <main class="flex-1 w-full z-10 relative md:ml-72 p-5 pb-24 pt-8 md:p-12 lg:p-16 overflow-y-auto min-h-screen bg-transparent border-l border-white/10 shadow-2xl">
         <div class="max-w-6xl mx-auto relative">
 
             <!-- === ONGLET : ACCUEIL === -->
             <div id="tab-accueil" class="tab-content active animate-fadeIn space-y-10 md:space-y-12">
-                <header class="border-b pb-6 md:pb-8 border-stone-200 text-center md:text-left">
+                <header class="border-b pb-6 md:pb-8 border-stone-200/50 text-center md:text-left">
                     <div class="md:hidden w-24 h-24 mx-auto bg-stone-200 rounded-full flex items-center justify-center mb-4 shadow-inner border-2 border-amber-600/30">
                         <i class="fa-solid fa-user text-4xl text-stone-500"></i>
                     </div>
                     
-                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-stone-900 tracking-tight mb-2 md:mb-3">
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white tracking-tight mb-2 md:mb-3 drop-shadow-md">
                         Tristan GIRAUD
                     </h2>
-                    <h3 class="text-lg md:text-xl lg:text-2xl font-medium text-amber-700 mb-6">
+                    <h3 class="text-lg md:text-xl lg:text-2xl font-medium text-amber-500 mb-6 drop-shadow-md">
                         Administrateur Systèmes & Réseaux - Futur Expert Cybersécurité
                     </h3>
                     
-                    <div class="flex flex-wrap justify-center md:justify-start gap-3 text-xs md:text-sm text-stone-600">
-                        <span class="flex items-center bg-white/80 backdrop-blur px-3 py-2 rounded-md shadow-sm border border-stone-200/50"><i class="fa-solid fa-envelope mr-2 text-stone-400"></i> tristan.giraud01@gmail.com</span>
-                        <span class="flex items-center bg-white/80 backdrop-blur px-3 py-2 rounded-md shadow-sm border border-stone-200/50"><i class="fa-solid fa-phone mr-2 text-stone-400"></i> (+33) 06 13 68 68 74</span>
-                        <span class="flex items-center bg-white/80 backdrop-blur px-3 py-2 rounded-md shadow-sm border border-stone-200/50"><i class="fa-solid fa-location-dot mr-2 text-stone-400"></i> Poissy, Île-de-France</span>
+                    <div class="flex flex-wrap justify-center md:justify-start gap-3 text-xs md:text-sm text-stone-800 font-medium">
+                        <!-- Les cartes d'infos sont blanches et quasi-opaques pour être lisibles sur les images -->
+                        <span class="flex items-center bg-white/95 backdrop-blur-sm px-3 py-2 rounded-md shadow-lg border border-stone-200/50"><i class="fa-solid fa-envelope mr-2 text-amber-600"></i> tristan.giraud01@gmail.com</span>
+                        <span class="flex items-center bg-white/95 backdrop-blur-sm px-3 py-2 rounded-md shadow-lg border border-stone-200/50"><i class="fa-solid fa-phone mr-2 text-amber-600"></i> (+33) 06 13 68 68 74</span>
+                        <span class="flex items-center bg-white/95 backdrop-blur-sm px-3 py-2 rounded-md shadow-lg border border-stone-200/50"><i class="fa-solid fa-location-dot mr-2 text-amber-600"></i> Poissy, Île-de-France</span>
                     </div>
                 </header>
 
@@ -201,57 +200,72 @@
                     <!-- Bio & Actions -->
                     <div class="lg:col-span-2 space-y-8">
                         <section>
-                            <h4 class="text-xs font-bold tracking-widest text-stone-400 uppercase mb-3 md:mb-4">Executive Summary</h4>
-                            <p class="text-base md:text-lg leading-relaxed text-stone-900 bg-white/60 backdrop-blur p-6 md:p-8 rounded-2xl shadow-sm border border-stone-200/50">
+                            <h4 class="text-xs font-bold tracking-widest text-stone-500 uppercase mb-3 md:mb-4 bg-white/95 backdrop-blur-sm px-3 py-1.5 inline-block rounded shadow-md border border-stone-200/50">Executive Summary</h4>
+                            <p class="text-base md:text-lg leading-relaxed text-stone-900 bg-white/95 backdrop-blur-sm p-6 md:p-8 rounded-2xl shadow-xl border border-stone-200/50">
                                 Actuellement en formation BTS SIO option SISR, je me spécialise dans la sécurisation et l'optimisation des infrastructures informatiques. Passionné par l'innovation technologique et doté d'une forte capacité d'adaptation, j'accompagne la transformation digitale des entreprises en garantissant la fiabilité et l'intégrité de leurs systèmes d'information.
                             </p>
                         </section>
 
                         <div class="flex flex-col sm:flex-row gap-4 pt-2">
-                            <button class="w-full sm:w-auto flex items-center justify-center px-6 py-4 md:py-3 rounded-xl text-white font-medium shadow-md transition-all bg-amber-700 hover:bg-amber-800">
+                            <button class="w-full sm:w-auto flex items-center justify-center px-6 py-4 md:py-3 rounded-xl text-white font-bold shadow-lg transition-all bg-amber-600 hover:bg-amber-700">
                                 <i class="fa-solid fa-download mr-2"></i> Télécharger mon CV
                             </button>
-                            <button onclick="switchTab('contact')" class="w-full sm:w-auto flex items-center justify-center px-6 py-4 md:py-3 rounded-xl text-stone-700 bg-white border border-stone-200 hover:bg-stone-50 font-medium shadow-sm transition-all">
+                            <button onclick="switchTab('contact')" class="w-full sm:w-auto flex items-center justify-center px-6 py-4 md:py-3 rounded-xl text-stone-800 bg-white border border-stone-200 hover:bg-stone-50 font-bold shadow-lg transition-all">
                                 Me contacter <i class="fa-solid fa-chevron-right ml-2 text-sm"></i>
                             </button>
                         </div>
                     </div>
 
-                    <!-- Compétences -->
+                    <!-- Compétences, Langues, Loisirs, Qualités -->
                     <div class="space-y-6">
-                        <h4 class="text-xs font-bold tracking-widest text-stone-400 uppercase mb-3 md:mb-4">Matrice de Compétences</h4>
+                        <h4 class="text-xs font-bold tracking-widest text-stone-500 uppercase mb-3 md:mb-4 bg-white/95 backdrop-blur-sm px-3 py-1.5 inline-block rounded shadow-md border border-stone-200/50">Profil & Compétences</h4>
                         
-                        <div class="bg-white/60 backdrop-blur p-6 rounded-2xl shadow-sm border border-stone-200/50 space-y-6">
+                        <div class="bg-white/95 backdrop-blur-sm p-6 rounded-2xl shadow-xl border border-stone-200/50 space-y-6">
+                            
+                            <!-- Section COMPÉTENCES -->
                             <div>
-                                <h5 class="text-sm font-bold text-stone-800 flex items-center mb-3"><i class="fa-solid fa-server mr-2 text-amber-600"></i> Systèmes & Serveurs</h5>
+                                <h5 class="text-sm font-bold text-stone-900 flex items-center mb-3"><i class="fa-solid fa-laptop-code mr-2 text-amber-600"></i> Compétences</h5>
                                 <div class="flex flex-wrap gap-2">
-                                    <span class="px-2.5 py-1 bg-stone-100 text-stone-700 text-xs rounded-md font-medium">Windows Server</span>
-                                    <span class="px-2.5 py-1 bg-stone-100 text-stone-700 text-xs rounded-md font-medium">Linux</span>
-                                    <span class="px-2.5 py-1 bg-stone-100 text-stone-700 text-xs rounded-md font-medium">Active Directory</span>
-                                    <span class="px-2.5 py-1 bg-stone-100 text-stone-700 text-xs rounded-md font-medium">DNS</span>
-                                    <span class="px-2.5 py-1 bg-stone-100 text-stone-700 text-xs rounded-md font-medium">DHCP</span>
+                                    <span class="px-2.5 py-1 bg-stone-100 text-stone-800 text-xs rounded-md font-semibold border border-stone-200">Réseau Informatique</span>
+                                    <span class="px-2.5 py-1 bg-stone-100 text-stone-800 text-xs rounded-md font-semibold border border-stone-200">Python, C#</span>
+                                    <span class="px-2.5 py-1 bg-stone-100 text-stone-800 text-xs rounded-md font-semibold border border-stone-200">HTML, CSS, JavaScript</span>
+                                    <span class="px-2.5 py-1 bg-stone-100 text-stone-800 text-xs rounded-md font-semibold border border-stone-200">Rédaction technique</span>
+                                    <span class="px-2.5 py-1 bg-stone-100 text-stone-800 text-xs rounded-md font-semibold border border-stone-200">DNS, DHCP</span>
+                                    <span class="px-2.5 py-1 bg-stone-100 text-stone-800 text-xs rounded-md font-semibold border border-stone-200">Utilisation de SSH</span>
                                 </div>
                             </div>
                             
+                            <!-- Section QUALITÉS -->
                             <div>
-                                <h5 class="text-sm font-bold text-stone-800 flex items-center mb-3"><i class="fa-solid fa-network-wired mr-2 text-amber-600"></i> Réseaux</h5>
+                                <h5 class="text-sm font-bold text-stone-900 flex items-center mb-3"><i class="fa-solid fa-star mr-2 text-amber-600"></i> Qualités</h5>
                                 <div class="flex flex-wrap gap-2">
-                                    <span class="px-2.5 py-1 bg-stone-100 text-stone-700 text-xs rounded-md font-medium">Routage LAN/WAN</span>
-                                    <span class="px-2.5 py-1 bg-stone-100 text-stone-700 text-xs rounded-md font-medium">VLAN</span>
-                                    <span class="px-2.5 py-1 bg-stone-100 text-stone-700 text-xs rounded-md font-medium">Cisco</span>
-                                    <span class="px-2.5 py-1 bg-stone-100 text-stone-700 text-xs rounded-md font-medium">SSH</span>
+                                    <span class="px-2.5 py-1 bg-amber-100 text-amber-900 text-xs rounded-md font-semibold border border-amber-200">Assidus</span>
+                                    <span class="px-2.5 py-1 bg-amber-100 text-amber-900 text-xs rounded-md font-semibold border border-amber-200">Sérieux</span>
+                                    <span class="px-2.5 py-1 bg-amber-100 text-amber-900 text-xs rounded-md font-semibold border border-amber-200">Multitâche</span>
+                                    <span class="px-2.5 py-1 bg-amber-100 text-amber-900 text-xs rounded-md font-semibold border border-amber-200">Polyvalent</span>
+                                    <span class="px-2.5 py-1 bg-amber-100 text-amber-900 text-xs rounded-md font-semibold border border-amber-200">Perfectionniste</span>
                                 </div>
                             </div>
 
-                            <div>
-                                <h5 class="text-sm font-bold text-stone-800 flex items-center mb-3"><i class="fa-solid fa-file-code mr-2 text-amber-600"></i> Code & Projets</h5>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="px-2.5 py-1 bg-amber-100/50 text-amber-900 text-xs rounded-md font-medium border border-amber-200/50">Python</span>
-                                    <span class="px-2.5 py-1 bg-amber-100/50 text-amber-900 text-xs rounded-md font-medium border border-amber-200/50">C#</span>
-                                    <span class="px-2.5 py-1 bg-amber-100/50 text-amber-900 text-xs rounded-md font-medium border border-amber-200/50">HTML/CSS</span>
-                                    <span class="px-2.5 py-1 bg-amber-100/50 text-amber-900 text-xs rounded-md font-medium border border-amber-200/50">Rédaction tech.</span>
+                            <!-- Section LANGUES ET LOISIRS -->
+                            <div class="grid grid-cols-2 gap-4 border-t border-stone-200 pt-5">
+                                <div>
+                                    <h5 class="text-sm font-bold text-stone-900 flex items-center mb-3"><i class="fa-solid fa-language mr-2 text-amber-600"></i> Langues</h5>
+                                    <ul class="text-xs text-stone-800 space-y-2 font-semibold">
+                                        <li class="flex items-center"><i class="fa-solid fa-check text-amber-500 mr-2 text-[10px]"></i> Français</li>
+                                        <li class="flex items-center"><i class="fa-solid fa-check text-amber-500 mr-2 text-[10px]"></i> Anglais</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h5 class="text-sm font-bold text-stone-900 flex items-center mb-3"><i class="fa-solid fa-face-smile mr-2 text-amber-600"></i> Loisirs</h5>
+                                    <ul class="text-xs text-stone-800 space-y-2 font-semibold">
+                                        <li class="flex items-center"><i class="fa-solid fa-golf-ball-tee text-stone-400 mr-2 text-[10px]"></i> Golf</li>
+                                        <li class="flex items-center"><i class="fa-solid fa-gamepad text-stone-400 mr-2 text-[10px]"></i> Jeux Vidéos</li>
+                                        <li class="flex items-center"><i class="fa-solid fa-pen-nib text-stone-400 mr-2 text-[10px]"></i> Dessin (manga)</li>
+                                    </ul>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -260,111 +274,111 @@
             <!-- === ONGLET : RÉALISATIONS === -->
             <div id="tab-realisations" class="tab-content animate-fadeIn">
                 <header class="mb-6 md:mb-10 text-center md:text-left">
-                    <h2 class="text-2xl md:text-3xl font-bold text-stone-900 mb-2 md:mb-3">Réalisations Professionnelles</h2>
-                    <p class="text-stone-600 text-sm md:text-base max-w-3xl mx-auto md:mx-0">
-                        Travaux réalisés justifiant l'acquisition des compétences du bloc <strong class="text-stone-800">"Support et mise à disposition de services informatiques"</strong>.
+                    <h2 class="text-2xl md:text-3xl font-bold text-stone-900 mb-2 md:mb-3 bg-white/95 backdrop-blur-sm inline-block px-4 py-2 rounded-lg shadow-md border border-stone-200/50">Réalisations Professionnelles</h2>
+                    <p class="text-stone-900 font-medium text-sm md:text-base max-w-3xl mx-auto md:mx-0 bg-white/95 backdrop-blur-sm p-4 rounded-lg mt-3 shadow-md border border-stone-200/50">
+                        Travaux réalisés justifiant l'acquisition des compétences du bloc <strong>"Support et mise à disposition de services informatiques"</strong>.
                     </p>
                 </header>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                     <!-- Projet 1 -->
-                    <div onclick="openModal(1)" class="bg-white/90 backdrop-blur rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-stone-200/50 overflow-hidden group cursor-pointer flex flex-col">
+                    <div onclick="openModal(1)" class="bg-white/95 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-stone-200/50 overflow-hidden group cursor-pointer flex flex-col">
                         <div class="h-32 md:h-40 w-full bg-gradient-to-br from-stone-700 to-stone-900 relative overflow-hidden flex items-center justify-center">
                             <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white to-transparent mix-blend-overlay"></div>
-                            <div class="text-white/80 flex flex-col items-center">
+                            <div class="text-white/90 flex flex-col items-center">
                                 <i class="fa-solid fa-server text-2xl"></i>
                                 <span class="text-[10px] md:text-xs mt-2 uppercase tracking-widest font-bold">Voir le projet</span>
                             </div>
                         </div>
                         <div class="p-5 md:p-6 flex-1 flex flex-col">
                             <div class="flex flex-wrap justify-between items-start mb-3 gap-2">
-                                <span class="text-[10px] md:text-xs font-bold text-amber-700 bg-amber-50 px-2 py-1 rounded uppercase tracking-wider">Administration Système</span>
-                                <span class="text-[10px] md:text-xs text-stone-400 font-medium">2025 - 2026</span>
+                                <span class="text-[10px] md:text-xs font-bold text-amber-700 bg-amber-100 px-2 py-1 rounded uppercase tracking-wider">Administration Système</span>
+                                <span class="text-[10px] md:text-xs text-stone-500 font-bold">2025 - 2026</span>
                             </div>
                             <h3 class="text-lg md:text-xl font-bold text-stone-900 mb-3 group-hover:text-amber-700 transition-colors leading-tight">Mise en place d'une solution d'administration système</h3>
-                            <div class="mt-auto pt-3 md:pt-4 border-t border-stone-100 flex flex-wrap gap-1.5 md:gap-2">
-                                <span class="text-[10px] md:text-xs font-medium bg-stone-100 text-stone-600 px-2 md:px-2.5 py-1 rounded-md">DNS / DHCP</span>
-                                <span class="text-[10px] md:text-xs font-medium bg-stone-100 text-stone-600 px-2 md:px-2.5 py-1 rounded-md">Active Directory</span>
+                            <div class="mt-auto pt-3 md:pt-4 border-t border-stone-200 flex flex-wrap gap-1.5 md:gap-2">
+                                <span class="text-[10px] md:text-xs font-semibold bg-stone-100 border border-stone-200 text-stone-700 px-2 md:px-2.5 py-1 rounded-md">DNS / DHCP</span>
+                                <span class="text-[10px] md:text-xs font-semibold bg-stone-100 border border-stone-200 text-stone-700 px-2 md:px-2.5 py-1 rounded-md">Active Directory</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- Projet 2 -->
-                    <div onclick="openModal(2)" class="bg-white/90 backdrop-blur rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-stone-200/50 overflow-hidden group cursor-pointer flex flex-col">
+                    <div onclick="openModal(2)" class="bg-white/95 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-stone-200/50 overflow-hidden group cursor-pointer flex flex-col">
                         <div class="h-32 md:h-40 w-full bg-gradient-to-br from-amber-700 to-amber-900 relative overflow-hidden flex items-center justify-center">
                             <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white to-transparent mix-blend-overlay"></div>
-                            <div class="text-white/80 flex flex-col items-center">
+                            <div class="text-white/90 flex flex-col items-center">
                                 <i class="fa-brands fa-linux text-2xl"></i>
                                 <span class="text-[10px] md:text-xs mt-2 uppercase tracking-widest font-bold">Voir le projet</span>
                             </div>
                         </div>
                         <div class="p-5 md:p-6 flex-1 flex flex-col">
                             <div class="flex flex-wrap justify-between items-start mb-3 gap-2">
-                                <span class="text-[10px] md:text-xs font-bold text-amber-700 bg-amber-50 px-2 py-1 rounded uppercase tracking-wider">Système & Sécurité</span>
-                                <span class="text-[10px] md:text-xs text-stone-400 font-medium">2025 - 2026</span>
+                                <span class="text-[10px] md:text-xs font-bold text-amber-700 bg-amber-100 px-2 py-1 rounded uppercase tracking-wider">Système & Sécurité</span>
+                                <span class="text-[10px] md:text-xs text-stone-500 font-bold">2025 - 2026</span>
                             </div>
                             <h3 class="text-lg md:text-xl font-bold text-stone-900 mb-3 group-hover:text-amber-700 transition-colors leading-tight">Configuration d'un système de partage de fichiers sous Linux</h3>
-                            <div class="mt-auto pt-3 md:pt-4 border-t border-stone-100 flex flex-wrap gap-1.5 md:gap-2">
-                                <span class="text-[10px] md:text-xs font-medium bg-stone-100 text-stone-600 px-2 md:px-2.5 py-1 rounded-md">Linux</span>
-                                <span class="text-[10px] md:text-xs font-medium bg-stone-100 text-stone-600 px-2 md:px-2.5 py-1 rounded-md">Droits d'accès</span>
+                            <div class="mt-auto pt-3 md:pt-4 border-t border-stone-200 flex flex-wrap gap-1.5 md:gap-2">
+                                <span class="text-[10px] md:text-xs font-semibold bg-stone-100 border border-stone-200 text-stone-700 px-2 md:px-2.5 py-1 rounded-md">Linux</span>
+                                <span class="text-[10px] md:text-xs font-semibold bg-stone-100 border border-stone-200 text-stone-700 px-2 md:px-2.5 py-1 rounded-md">Droits d'accès</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Projet 3 (Ajout de la clé USB) -->
-                    <div onclick="openModal(3)" class="bg-white/90 backdrop-blur rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-stone-200/50 overflow-hidden group cursor-pointer flex flex-col">
+                    <!-- Projet 3 -->
+                    <div onclick="openModal(3)" class="bg-white/95 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-stone-200/50 overflow-hidden group cursor-pointer flex flex-col">
                         <div class="h-32 md:h-40 w-full bg-gradient-to-br from-stone-500 to-stone-700 relative overflow-hidden flex items-center justify-center">
                             <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white to-transparent mix-blend-overlay"></div>
-                            <div class="text-white/80 flex flex-col items-center">
+                            <div class="text-white/90 flex flex-col items-center">
                                 <i class="fa-solid fa-toolbox text-2xl"></i>
                                 <span class="text-[10px] md:text-xs mt-2 uppercase tracking-widest font-bold">Voir le projet</span>
                             </div>
                         </div>
                         <div class="p-5 md:p-6 flex-1 flex flex-col">
                             <div class="flex flex-wrap justify-between items-start mb-3 gap-2">
-                                <span class="text-[10px] md:text-xs font-bold text-amber-700 bg-amber-50 px-2 py-1 rounded uppercase tracking-wider">Support & Maintenance</span>
-                                <span class="text-[10px] md:text-xs text-stone-400 font-medium">2025 - 2026</span>
+                                <span class="text-[10px] md:text-xs font-bold text-amber-700 bg-amber-100 px-2 py-1 rounded uppercase tracking-wider">Support & Maintenance</span>
+                                <span class="text-[10px] md:text-xs text-stone-500 font-bold">2025 - 2026</span>
                             </div>
                             <h3 class="text-lg md:text-xl font-bold text-stone-900 mb-3 group-hover:text-amber-700 transition-colors leading-tight">Création d'une boite à outil (clé USB bootable)</h3>
-                            <div class="mt-auto pt-3 md:pt-4 border-t border-stone-100 flex flex-wrap gap-1.5 md:gap-2">
-                                <span class="text-[10px] md:text-xs font-medium bg-stone-100 text-stone-600 px-2 md:px-2.5 py-1 rounded-md">Diagnostic Hardware</span>
-                                <span class="text-[10px] md:text-xs font-medium bg-stone-100 text-stone-600 px-2 md:px-2.5 py-1 rounded-md">Documentation</span>
+                            <div class="mt-auto pt-3 md:pt-4 border-t border-stone-200 flex flex-wrap gap-1.5 md:gap-2">
+                                <span class="text-[10px] md:text-xs font-semibold bg-stone-100 border border-stone-200 text-stone-700 px-2 md:px-2.5 py-1 rounded-md">Diagnostic Hardware</span>
+                                <span class="text-[10px] md:text-xs font-semibold bg-stone-100 border border-stone-200 text-stone-700 px-2 md:px-2.5 py-1 rounded-md">Documentation</span>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Projet 4 (Réseau) -->
-                    <div onclick="openModal(4)" class="bg-white/90 backdrop-blur rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-stone-200/50 overflow-hidden group cursor-pointer flex flex-col">
+                    <!-- Projet 4 -->
+                    <div onclick="openModal(4)" class="bg-white/95 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-stone-200/50 overflow-hidden group cursor-pointer flex flex-col">
                         <div class="h-32 md:h-40 w-full bg-gradient-to-br from-stone-600 to-stone-800 relative overflow-hidden flex items-center justify-center">
                             <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white to-transparent mix-blend-overlay"></div>
-                            <div class="text-white/80 flex flex-col items-center">
+                            <div class="text-white/90 flex flex-col items-center">
                                 <i class="fa-solid fa-network-wired text-2xl"></i>
                                 <span class="text-[10px] md:text-xs mt-2 uppercase tracking-widest font-bold">Voir le projet</span>
                             </div>
                         </div>
                         <div class="p-5 md:p-6 flex-1 flex flex-col">
                             <div class="flex flex-wrap justify-between items-start mb-3 gap-2">
-                                <span class="text-[10px] md:text-xs font-bold text-amber-700 bg-amber-50 px-2 py-1 rounded uppercase tracking-wider">Réseau</span>
-                                <span class="text-[10px] md:text-xs text-stone-400 font-medium">2025 - 2026</span>
+                                <span class="text-[10px] md:text-xs font-bold text-amber-700 bg-amber-100 px-2 py-1 rounded uppercase tracking-wider">Réseau</span>
+                                <span class="text-[10px] md:text-xs text-stone-500 font-bold">2025 - 2026</span>
                             </div>
                             <h3 class="text-lg md:text-xl font-bold text-stone-900 mb-3 group-hover:text-amber-700 transition-colors leading-tight">Conception et configuration d'un réseau informatique</h3>
-                            <div class="mt-auto pt-3 md:pt-4 border-t border-stone-100 flex flex-wrap gap-1.5 md:gap-2">
-                                <span class="text-[10px] md:text-xs font-medium bg-stone-100 text-stone-600 px-2 md:px-2.5 py-1 rounded-md">LAN/WAN</span>
-                                <span class="text-[10px] md:text-xs font-medium bg-stone-100 text-stone-600 px-2 md:px-2.5 py-1 rounded-md">VLAN</span>
-                                <span class="text-[10px] md:text-xs font-medium bg-stone-100 text-stone-600 px-2 md:px-2.5 py-1 rounded-md">DHCP</span>
+                            <div class="mt-auto pt-3 md:pt-4 border-t border-stone-200 flex flex-wrap gap-1.5 md:gap-2">
+                                <span class="text-[10px] md:text-xs font-semibold bg-stone-100 border border-stone-200 text-stone-700 px-2 md:px-2.5 py-1 rounded-md">LAN/WAN</span>
+                                <span class="text-[10px] md:text-xs font-semibold bg-stone-100 border border-stone-200 text-stone-700 px-2 md:px-2.5 py-1 rounded-md">VLAN</span>
+                                <span class="text-[10px] md:text-xs font-semibold bg-stone-100 border border-stone-200 text-stone-700 px-2 md:px-2.5 py-1 rounded-md">DHCP</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Call to Action -->
-                <div class="mt-12 md:mt-16 bg-gradient-to-br from-stone-100 to-white/90 backdrop-blur rounded-2xl shadow-sm border border-stone-200/50 p-8 text-center flex flex-col items-center">
-                    <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mb-4">
+                <div class="mt-12 md:mt-16 bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl border border-stone-200/50 p-8 text-center flex flex-col items-center">
+                    <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mb-4 border border-amber-200">
                         <i class="fa-solid fa-envelope text-amber-700 text-xl"></i>
                     </div>
                     <h3 class="text-xl md:text-2xl font-bold text-stone-900 mb-2">Un projet ? Une opportunité ?</h3>
-                    <p class="text-stone-600 mb-6 max-w-xl">Ces réalisations vous interpellent ? N'hésitez pas à me contacter pour échanger sur mes compétences et mes futures missions.</p>
-                    <button onclick="switchTab('contact')" class="px-8 py-3.5 rounded-xl text-white font-bold transition-all shadow-md bg-amber-700 hover:bg-amber-800 hover:-translate-y-0.5 flex items-center">
+                    <p class="text-stone-800 font-medium mb-6 max-w-xl">Ces réalisations vous interpellent ? N'hésitez pas à me contacter pour échanger sur mes compétences et mes futures missions.</p>
+                    <button onclick="switchTab('contact')" class="px-8 py-3.5 rounded-xl text-white font-bold transition-all shadow-md bg-amber-600 hover:bg-amber-700 hover:-translate-y-0.5 flex items-center">
                         <i class="fa-solid fa-paper-plane mr-2"></i> Discutons-en
                     </button>
                 </div>
@@ -373,52 +387,56 @@
             <!-- === ONGLET : PARCOURS === -->
             <div id="tab-parcours" class="tab-content animate-fadeIn max-w-4xl mx-auto">
                 <header class="mb-8 md:mb-12 text-center md:text-left">
-                    <h2 class="text-2xl md:text-3xl font-bold text-stone-900 mb-2 md:mb-3">Parcours de Professionnalisation</h2>
-                    <p class="text-stone-600 text-sm md:text-base">Chronologie de ma formation académique et de mes certifications.</p>
+                    <h2 class="text-2xl md:text-3xl font-bold text-stone-900 mb-2 md:mb-3 bg-white/95 backdrop-blur-sm inline-block px-4 py-2 rounded-lg shadow-md border border-stone-200/50">Parcours de Professionnalisation</h2>
+                    <p class="text-stone-900 font-medium text-sm md:text-base bg-white/95 backdrop-blur-sm p-4 rounded-lg mt-3 shadow-md border border-stone-200/50">Chronologie de ma formation académique et de mes certifications.</p>
                 </header>
                 
                 <div class="relative border-l-2 border-stone-300 ml-3 md:ml-4 space-y-8 md:space-y-10">
                     <div class="relative pl-6 md:pl-8">
                         <span class="absolute -left-[9px] top-2 w-4 h-4 rounded-full bg-amber-600 ring-4 ring-white/50 md:ring-white/80"></span>
-                        <div class="bg-white/90 backdrop-blur p-5 md:p-8 rounded-2xl shadow-sm border border-stone-200/50 hover:shadow-md transition-shadow">
+                        <div class="bg-white/95 backdrop-blur-sm p-5 md:p-8 rounded-2xl shadow-xl border border-stone-200/50 hover:shadow-2xl transition-shadow">
                             <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-3 md:mb-4">
                                 <div>
                                     <h3 class="text-lg md:text-xl font-bold text-stone-900 leading-tight">BTS SIO - Option SISR</h3>
-                                    <h4 class="text-sm md:text-md font-medium text-amber-700 mt-1">CNED (Formation à distance)</h4>
+                                    <a href="https://www.cned.fr/informatique-et-numerique/bts-services-informatiques-aux-organisations-option-a-et-b" target="_blank" class="inline-flex items-center text-sm md:text-md font-bold text-amber-700 mt-1 hover:text-amber-800 hover:underline transition-all">
+                                        CNED (Formation à distance) <i class="fa-solid fa-arrow-up-right-from-square ml-1.5 text-[10px]"></i>
+                                    </a>
                                 </div>
-                                <span class="inline-block mt-2 sm:mt-0 px-2.5 py-1 bg-stone-100 text-stone-600 text-xs md:text-sm font-semibold rounded-md w-fit">
+                                <span class="inline-block mt-2 sm:mt-0 px-3 py-1 bg-stone-100 border border-stone-200 text-stone-800 text-xs md:text-sm font-bold rounded-md w-fit">
                                     2025 - 2027
                                 </span>
                             </div>
-                            <p class="text-stone-600 text-sm md:text-base leading-relaxed">Administration systèmes et réseaux, conception d'architectures sécurisées, gestion de parc informatique et support utilisateur.</p>
+                            <p class="text-stone-800 font-medium text-sm md:text-base leading-relaxed">Administration systèmes et réseaux, conception d'architectures sécurisées, gestion de parc informatique et support utilisateur.</p>
                         </div>
                     </div>
 
                     <div class="relative pl-6 md:pl-8">
                         <span class="absolute -left-[9px] top-2 w-4 h-4 rounded-full bg-amber-600 ring-4 ring-white/50 md:ring-white/80"></span>
-                        <div class="bg-white/90 backdrop-blur p-5 md:p-8 rounded-2xl shadow-sm border border-stone-200/50 hover:shadow-md transition-shadow">
+                        <div class="bg-white/95 backdrop-blur-sm p-5 md:p-8 rounded-2xl shadow-xl border border-stone-200/50 hover:shadow-2xl transition-shadow">
                             <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-3 md:mb-4">
                                 <div>
                                     <h3 class="text-lg md:text-xl font-bold text-stone-900 leading-tight">Baccalauréat Général</h3>
-                                    <h4 class="text-sm md:text-md font-medium text-amber-700 mt-1">Lycée privé Saint-Thomas de Villeneuve (St-Germain-en-Laye)</h4>
+                                    <a href="https://www.st-thomas-de-villeneuve.org/" target="_blank" class="inline-flex items-center text-sm md:text-md font-bold text-amber-700 mt-1 hover:text-amber-800 hover:underline transition-all">
+                                        Lycée privé Saint-Thomas de Villeneuve <i class="fa-solid fa-arrow-up-right-from-square ml-1.5 text-[10px]"></i>
+                                    </a>
                                 </div>
-                                <span class="inline-block mt-2 sm:mt-0 px-2.5 py-1 bg-stone-100 text-stone-600 text-xs md:text-sm font-semibold rounded-md w-fit">
+                                <span class="inline-block mt-2 sm:mt-0 px-3 py-1 bg-stone-100 border border-stone-200 text-stone-800 text-xs md:text-sm font-bold rounded-md w-fit">
                                     Obtenu
                                 </span>
                             </div>
-                            <p class="text-stone-600 text-sm md:text-base leading-relaxed">Spécialités : Histoire-Géographie, Géopolitique et Sciences Politiques (HGGSP) / Sciences Économiques et Sociales (SES).</p>
+                            <p class="text-stone-800 font-medium text-sm md:text-base leading-relaxed">Spécialités : Histoire-Géographie, Géopolitique et Sciences Politiques (HGGSP) / Sciences Économiques et Sociales (SES).</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Call to Action -->
-                <div class="mt-12 md:mt-16 bg-gradient-to-br from-stone-100 to-white/90 backdrop-blur rounded-2xl shadow-sm border border-stone-200/50 p-8 text-center flex flex-col items-center">
-                    <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mb-4">
+                <div class="mt-12 md:mt-16 bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl border border-stone-200/50 p-8 text-center flex flex-col items-center">
+                    <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mb-4 border border-amber-200">
                         <i class="fa-solid fa-graduation-cap text-amber-700 text-xl"></i>
                     </div>
                     <h3 class="text-xl md:text-2xl font-bold text-stone-900 mb-2">Mon profil vous intéresse ?</h3>
-                    <p class="text-stone-600 mb-6 max-w-xl">Je suis à la recherche d'une entreprise pour mettre en pratique ma formation et développer mes compétences sur le terrain.</p>
-                    <button onclick="switchTab('contact')" class="px-8 py-3.5 rounded-xl text-white font-bold transition-all shadow-md bg-amber-700 hover:bg-amber-800 hover:-translate-y-0.5 flex items-center">
+                    <p class="text-stone-800 font-medium mb-6 max-w-xl">Je suis à la recherche d'une entreprise pour mettre en pratique ma formation et développer mes compétences sur le terrain.</p>
+                    <button onclick="switchTab('contact')" class="px-8 py-3.5 rounded-xl text-white font-bold transition-all shadow-md bg-amber-600 hover:bg-amber-700 hover:-translate-y-0.5 flex items-center">
                         <i class="fa-solid fa-paper-plane mr-2"></i> Me contacter
                     </button>
                 </div>
@@ -427,58 +445,58 @@
             <!-- === ONGLET : VEILLE === -->
             <div id="tab-veille" class="tab-content animate-fadeIn">
                 <header class="mb-8 md:mb-10 text-center max-w-3xl mx-auto">
-                    <div class="w-14 h-14 md:w-16 md:h-16 bg-amber-100/90 rounded-2xl flex items-center justify-center mx-auto mb-4 md:mb-6 shadow-inner border border-amber-200/50">
+                    <div class="w-14 h-14 md:w-16 md:h-16 bg-amber-100/90 rounded-2xl flex items-center justify-center mx-auto mb-4 md:mb-6 shadow-md border border-amber-200">
                         <i class="fa-solid fa-bell text-xl md:text-2xl text-amber-600"></i>
                     </div>
-                    <h2 class="text-2xl md:text-3xl font-bold text-stone-900 mb-3 md:mb-4">Stratégie de Veille Informationnelle</h2>
-                    <p class="text-stone-600 text-sm md:text-lg leading-relaxed px-4 md:px-0">
+                    <h2 class="text-2xl md:text-3xl font-bold text-stone-900 mb-3 md:mb-4 bg-white/95 backdrop-blur-sm inline-block px-4 py-2 rounded-lg shadow-md border border-stone-200/50">Stratégie de Veille Informationnelle</h2>
+                    <p class="text-stone-900 font-medium text-sm md:text-lg leading-relaxed px-4 md:px-0 bg-white/95 backdrop-blur-sm p-4 rounded-lg mt-3 shadow-md border border-stone-200/50">
                         Conformément aux exigences du développement professionnel, j'organise une veille technologique active axée sur 
-                        <strong class="text-stone-900 font-semibold"> l'évolution des cybermenaces et la sécurisation des SI</strong>.
+                        <strong class="text-amber-700 font-bold"> l'évolution des cybermenaces et la sécurisation des SI</strong>.
                     </p>
                 </header>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto">
-                    <div class="bg-white/90 backdrop-blur p-6 md:p-8 rounded-2xl shadow-sm border border-stone-200/50">
-                        <h3 class="text-lg md:text-xl font-bold text-stone-800 mb-5 flex items-center">
+                    <div class="bg-white/95 backdrop-blur-sm p-6 md:p-8 rounded-2xl shadow-xl border border-stone-200/50">
+                        <h3 class="text-lg md:text-xl font-bold text-stone-900 mb-5 flex items-center">
                             <i class="fa-solid fa-mobile-screen mr-3 text-amber-600"></i> Outils de Collecte
                         </h3>
                         <ul class="space-y-4">
                             <li class="flex items-start">
                                 <div class="w-2 h-2 bg-amber-500 rounded-full mt-1.5 md:mt-2 mr-3 shrink-0"></div>
                                 <div>
-                                    <strong class="text-stone-800 block text-sm md:text-base">Agrégateurs RSS (Feedly)</strong>
-                                    <span class="text-xs md:text-sm text-stone-500">Centralisation des flux de blogs cybersécurité (The Hacker News, Bleeping Computer).</span>
+                                    <strong class="text-stone-900 block text-sm md:text-base font-bold">Agrégateurs RSS (Feedly)</strong>
+                                    <span class="text-xs md:text-sm text-stone-700 font-medium">Centralisation des flux de blogs cybersécurité (The Hacker News, Bleeping Computer).</span>
                                 </div>
                             </li>
                             <li class="flex items-start">
                                 <div class="w-2 h-2 bg-amber-500 rounded-full mt-1.5 md:mt-2 mr-3 shrink-0"></div>
                                 <div>
-                                    <strong class="text-stone-800 block text-sm md:text-base">Alertes Institutionnelles</strong>
-                                    <span class="text-xs md:text-sm text-stone-500">Abonnement au CERT-FR et à l'ANSSI pour les vulnérabilités critiques (CVE).</span>
+                                    <strong class="text-stone-900 block text-sm md:text-base font-bold">Alertes Institutionnelles</strong>
+                                    <span class="text-xs md:text-sm text-stone-700 font-medium">Abonnement au CERT-FR et à l'ANSSI pour les vulnérabilités critiques (CVE).</span>
                                 </div>
                             </li>
                         </ul>
                     </div>
 
-                    <div class="bg-white/90 backdrop-blur p-6 md:p-8 rounded-2xl shadow-sm border border-stone-200/50">
-                        <h3 class="text-lg md:text-xl font-bold text-stone-800 mb-5 flex items-center">
+                    <div class="bg-white/95 backdrop-blur-sm p-6 md:p-8 rounded-2xl shadow-xl border border-stone-200/50">
+                        <h3 class="text-lg md:text-xl font-bold text-stone-900 mb-5 flex items-center">
                             <i class="fa-solid fa-file-lines mr-3 text-amber-600"></i> Synthèse & Partage
                         </h3>
-                        <div class="border-2 border-dashed border-stone-300 rounded-xl p-6 md:p-8 text-center text-stone-500 flex flex-col items-center justify-center h-[120px] md:h-auto">
-                            <i class="fa-solid fa-rss text-2xl md:text-3xl mb-2 md:mb-3 text-stone-400"></i>
-                            <p class="text-xs md:text-sm">Cet espace accueillera prochainement mes synthèses d'articles.</p>
+                        <div class="border-2 border-dashed border-stone-400 rounded-xl p-6 md:p-8 text-center text-stone-600 flex flex-col items-center justify-center h-[120px] md:h-auto bg-stone-50/50">
+                            <i class="fa-solid fa-rss text-2xl md:text-3xl mb-2 md:mb-3 text-amber-500"></i>
+                            <p class="text-xs md:text-sm font-bold">Cet espace accueillera prochainement mes synthèses d'articles.</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Call to Action -->
-                <div class="mt-12 md:mt-16 bg-gradient-to-br from-stone-100 to-white/90 backdrop-blur rounded-2xl shadow-sm border border-stone-200/50 p-8 text-center flex flex-col items-center max-w-4xl mx-auto">
-                    <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mb-4">
+                <div class="mt-12 md:mt-16 bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl border border-stone-200/50 p-8 text-center flex flex-col items-center max-w-4xl mx-auto">
+                    <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mb-4 border border-amber-200">
                         <i class="fa-solid fa-laptop-code text-amber-700 text-xl"></i>
                     </div>
                     <h3 class="text-xl md:text-2xl font-bold text-stone-900 mb-2">Travaillons ensemble</h3>
-                    <p class="text-stone-600 mb-6 max-w-xl">Ces thématiques sont au cœur des enjeux actuels. N'hésitez pas à me contacter si vous souhaitez en discuter.</p>
-                    <button onclick="switchTab('contact')" class="px-8 py-3.5 rounded-xl text-white font-bold transition-all shadow-md bg-amber-700 hover:bg-amber-800 hover:-translate-y-0.5 flex items-center">
+                    <p class="text-stone-800 font-medium mb-6 max-w-xl">Ces thématiques sont au cœur des enjeux actuels. N'hésitez pas à me contacter si vous souhaitez en discuter.</p>
+                    <button onclick="switchTab('contact')" class="px-8 py-3.5 rounded-xl text-white font-bold transition-all shadow-md bg-amber-600 hover:bg-amber-700 hover:-translate-y-0.5 flex items-center">
                         <i class="fa-solid fa-paper-plane mr-2"></i> Me Contacter
                     </button>
                 </div>
@@ -487,77 +505,77 @@
             <!-- === ONGLET : CONTACT === -->
             <div id="tab-contact" class="tab-content animate-fadeIn max-w-5xl mx-auto">
                 <header class="mb-8 md:mb-10 text-center md:text-left">
-                    <div class="w-14 h-14 md:w-16 md:h-16 bg-amber-100/90 rounded-2xl flex items-center justify-center mx-auto md:mx-0 mb-4 md:mb-6 shadow-inner border border-amber-200/50">
+                    <div class="w-14 h-14 md:w-16 md:h-16 bg-amber-100/90 rounded-2xl flex items-center justify-center mx-auto md:mx-0 mb-4 md:mb-6 shadow-md border border-amber-200/50">
                         <i class="fa-solid fa-paper-plane text-xl md:text-2xl text-amber-600"></i>
                     </div>
-                    <h2 class="text-2xl md:text-3xl font-bold text-stone-900 mb-2 md:mb-3">Contactez-moi</h2>
-                    <p class="text-stone-600 text-sm md:text-base max-w-2xl">
-                        Vous cherchez un profil motivé pour un stage, une alternance ou un premier poste en <strong class="text-stone-800">administration système et réseau</strong> ? Discutons-en.
+                    <h2 class="text-2xl md:text-3xl font-bold text-stone-900 mb-2 md:mb-3 bg-white/95 backdrop-blur-sm inline-block px-4 py-2 rounded-lg shadow-md border border-stone-200/50">Contactez-moi</h2>
+                    <p class="text-stone-900 font-medium text-sm md:text-base max-w-2xl bg-white/95 backdrop-blur-sm p-4 rounded-lg mt-3 shadow-md border border-stone-200/50">
+                        Vous cherchez un profil motivé pour un stage, une alternance ou un premier poste en <strong class="text-amber-700 font-bold">administration système et réseau</strong> ? Discutons-en.
                     </p>
                 </header>
 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10">
-                    <div class="bg-white/90 backdrop-blur p-6 md:p-8 rounded-2xl shadow-sm border border-stone-200/50 relative overflow-hidden">
+                    <div class="bg-white/95 backdrop-blur-sm p-6 md:p-8 rounded-2xl shadow-xl border border-stone-200/50 relative overflow-hidden">
                         <div class="absolute top-0 right-0 w-32 h-32 bg-stone-100 rounded-bl-full -mr-8 -mt-8 z-0"></div>
-                        <h3 class="text-lg md:text-xl font-bold text-stone-800 mb-6 relative z-10">Envoyer un message</h3>
+                        <h3 class="text-lg md:text-xl font-bold text-stone-900 mb-6 relative z-10">Envoyer un message</h3>
                         <form class="space-y-4 md:space-y-5 relative z-10" onsubmit="event.preventDefault(); alert('Message envoyé avec succès !');">
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div>
                                     <label class="block text-xs font-bold text-stone-500 uppercase tracking-wide mb-1 md:mb-2">Nom / Entreprise</label>
-                                    <input type="text" class="w-full p-3 rounded-xl border border-stone-200 bg-white focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all text-sm shadow-sm" placeholder="Jean Dupont" required>
+                                    <input type="text" class="w-full p-3 rounded-xl border border-stone-300 bg-white focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all text-sm shadow-sm" placeholder="Jean Dupont" required>
                                 </div>
                                 <div>
                                     <label class="block text-xs font-bold text-stone-500 uppercase tracking-wide mb-1 md:mb-2">Email</label>
-                                    <input type="email" class="w-full p-3 rounded-xl border border-stone-200 bg-white focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all text-sm shadow-sm" placeholder="jean@example.com" required>
+                                    <input type="email" class="w-full p-3 rounded-xl border border-stone-300 bg-white focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all text-sm shadow-sm" placeholder="jean@example.com" required>
                                 </div>
                             </div>
                             <div>
                                 <label class="block text-xs font-bold text-stone-500 uppercase tracking-wide mb-1 md:mb-2">Sujet</label>
-                                <input type="text" class="w-full p-3 rounded-xl border border-stone-200 bg-white focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all text-sm shadow-sm" placeholder="Proposition de stage..." required>
+                                <input type="text" class="w-full p-3 rounded-xl border border-stone-300 bg-white focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all text-sm shadow-sm" placeholder="Proposition de stage..." required>
                             </div>
                             <div>
                                 <label class="block text-xs font-bold text-stone-500 uppercase tracking-wide mb-1 md:mb-2">Message</label>
-                                <textarea rows="5" class="w-full p-3 rounded-xl border border-stone-200 bg-white focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all text-sm resize-none shadow-sm" placeholder="Détaillez votre proposition ici..." required></textarea>
+                                <textarea rows="5" class="w-full p-3 rounded-xl border border-stone-300 bg-white focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all text-sm resize-none shadow-sm" placeholder="Détaillez votre proposition ici..." required></textarea>
                             </div>
-                            <button type="submit" class="w-full py-4 rounded-xl text-white font-bold flex items-center justify-center transition-all shadow-md bg-amber-700 hover:bg-amber-800 hover:-translate-y-0.5">
+                            <button type="submit" class="w-full py-4 rounded-xl text-white font-bold flex items-center justify-center transition-all shadow-md bg-amber-600 hover:bg-amber-700 hover:-translate-y-0.5">
                                 <i class="fa-solid fa-paper-plane mr-2"></i> Envoyer
                             </button>
                         </form>
                     </div>
 
                     <div class="space-y-6 md:space-y-8">
-                        <div class="bg-gradient-to-br from-amber-50/90 to-amber-100/90 backdrop-blur p-6 md:p-8 rounded-2xl shadow-sm border border-amber-200 text-amber-900 relative overflow-hidden">
+                        <div class="bg-gradient-to-br from-amber-50/95 to-amber-100/95 backdrop-blur-sm p-6 md:p-8 rounded-2xl shadow-xl border border-amber-200 text-amber-900 relative overflow-hidden">
                             <h4 class="text-base md:text-lg font-bold mb-3 md:mb-4 flex items-center relative z-10"><i class="fa-solid fa-location-dot mr-2"></i> Informations Pratiques</h4>
                             <ul class="space-y-4 relative z-10">
-                                <li class="flex items-center text-sm md:text-base font-medium">
+                                <li class="flex items-center text-sm md:text-base font-bold">
                                     <i class="fa-solid fa-phone w-5 text-center mr-3 text-amber-700"></i> (+33) 06 13 68 68 74
                                 </li>
-                                <li class="flex items-center text-sm md:text-base font-medium">
+                                <li class="flex items-center text-sm md:text-base font-bold">
                                     <i class="fa-solid fa-envelope w-5 text-center mr-3 text-amber-700"></i> tristan.giraud01@gmail.com
                                 </li>
-                                <li class="flex items-start text-sm md:text-base font-medium pt-2 border-t border-amber-200/50">
+                                <li class="flex items-start text-sm md:text-base font-bold pt-2 border-t border-amber-200/50">
                                     <i class="fa-solid fa-location-dot w-5 text-center mr-3 mt-1 text-amber-700 shrink-0"></i>
-                                    <span>Basé à <strong>Poissy, Île-de-France</strong>.<br/> <span class="text-amber-800/80 text-xs md:text-sm">Mobile pour des missions, stages ou alternances.</span></span>
+                                    <span>Basé à <strong class="text-amber-800">Poissy, Île-de-France</strong>.<br/> <span class="text-amber-800/80 text-xs md:text-sm font-medium">Mobile pour des missions, stages ou alternances.</span></span>
                                 </li>
                             </ul>
                         </div>
 
-                        <div class="bg-white/90 backdrop-blur p-6 md:p-8 rounded-2xl shadow-sm border border-stone-200/50">
-                            <h4 class="text-base md:text-lg font-bold text-stone-800 mb-4 md:mb-5">Mes Réseaux Professionnels</h4>
+                        <div class="bg-white/95 backdrop-blur-sm p-6 md:p-8 rounded-2xl shadow-xl border border-stone-200/50">
+                            <h4 class="text-base md:text-lg font-bold text-stone-900 mb-4 md:mb-5">Mes Réseaux Professionnels</h4>
                             <div class="space-y-3 md:space-y-4">
-                                <a href="LIEN_LINKEDIN_ICI" target="_blank" class="flex items-center p-3 md:p-4 rounded-xl border border-stone-200 hover:border-amber-500 hover:shadow-md transition-all group bg-white">
+                                <a href="LIEN_LINKEDIN_ICI" target="_blank" class="flex items-center p-3 md:p-4 rounded-xl border border-stone-200 hover:border-amber-500 hover:shadow-md transition-all group bg-stone-50">
                                     <i class="fa-brands fa-linkedin text-3xl text-[#0A66C2] mr-3 md:mr-4 group-hover:scale-110 transition-transform shrink-0"></i>
                                     <div>
-                                        <strong class="block text-stone-800 font-bold text-sm md:text-base">LinkedIn</strong>
-                                        <span class="text-[10px] md:text-xs text-stone-500 font-medium">Consulter mon réseau</span>
+                                        <strong class="block text-stone-900 font-bold text-sm md:text-base">LinkedIn</strong>
+                                        <span class="text-[10px] md:text-xs text-stone-600 font-medium">Consulter mon réseau</span>
                                     </div>
                                     <i class="fa-solid fa-chevron-right ml-auto text-stone-400 group-hover:text-amber-500 transition-colors"></i>
                                 </a>
-                                <a href="LIEN_GITHUB_ICI" target="_blank" class="flex items-center p-3 md:p-4 rounded-xl border border-stone-200 hover:border-stone-800 hover:shadow-md transition-all group bg-white">
+                                <a href="LIEN_GITHUB_ICI" target="_blank" class="flex items-center p-3 md:p-4 rounded-xl border border-stone-200 hover:border-stone-800 hover:shadow-md transition-all group bg-stone-50">
                                     <i class="fa-brands fa-github text-3xl text-stone-800 mr-3 md:mr-4 group-hover:scale-110 transition-transform shrink-0"></i>
                                     <div>
-                                        <strong class="block text-stone-800 font-bold text-sm md:text-base">GitHub</strong>
-                                        <span class="text-[10px] md:text-xs text-stone-500 font-medium">Voir mes scripts & documentations</span>
+                                        <strong class="block text-stone-900 font-bold text-sm md:text-base">GitHub</strong>
+                                        <span class="text-[10px] md:text-xs text-stone-600 font-medium">Voir mes scripts & documentations</span>
                                     </div>
                                     <i class="fa-solid fa-chevron-right ml-auto text-stone-800 transition-colors"></i>
                                 </a>
@@ -590,11 +608,11 @@
                     <div class="lg:col-span-2 space-y-6 md:space-y-8">
                         <section>
                             <h3 class="text-base md:text-lg font-bold text-stone-900 mb-3 flex items-center"><span class="w-6 h-6 md:w-8 md:h-8 rounded text-xs md:text-sm bg-amber-100 text-amber-700 flex items-center justify-center mr-3 shadow-inner">1</span> Cadre de réalisation</h3>
-                            <p class="text-stone-600 text-sm md:text-base leading-relaxed bg-stone-50 p-4 md:p-5 rounded-xl border border-stone-100">Déploiement d'une architecture client-serveur centralisée pour simplifier la gestion du parc informatique.</p>
+                            <p class="text-stone-800 font-medium text-sm md:text-base leading-relaxed bg-stone-50 p-4 md:p-5 rounded-xl border border-stone-200">Déploiement d'une architecture client-serveur centralisée pour simplifier la gestion du parc informatique.</p>
                         </section>
                         <section>
                             <h3 class="text-base md:text-lg font-bold text-stone-900 mb-3 flex items-center"><span class="w-6 h-6 md:w-8 md:h-8 rounded text-xs md:text-sm bg-amber-100 text-amber-700 flex items-center justify-center mr-3 shadow-inner">2</span> Missions & Déploiement</h3>
-                            <ul class="list-disc list-inside text-stone-600 text-sm md:text-base leading-relaxed space-y-2">
+                            <ul class="list-disc list-inside text-stone-800 font-medium text-sm md:text-base leading-relaxed space-y-2">
                                 <li><strong>Configuration de serveur de domaine (DNS)</strong> et des serveurs DHCP.</li>
                                 <li><strong>Configuration des groupes et utilisateur ADS</strong> (Active Directory).</li>
                                 <li><strong>Connection d'un compte utilisateur dans le domaine</strong> pour valider l'infrastructure.</li>
@@ -633,11 +651,11 @@
                     <div class="lg:col-span-2 space-y-6 md:space-y-8">
                         <section>
                             <h3 class="text-base md:text-lg font-bold text-stone-900 mb-3 flex items-center"><span class="w-6 h-6 md:w-8 md:h-8 rounded text-xs md:text-sm bg-amber-100 text-amber-700 flex items-center justify-center mr-3 shadow-inner">1</span> Cadre de réalisation</h3>
-                            <p class="text-stone-600 text-sm md:text-base leading-relaxed bg-stone-50 p-4 md:p-5 rounded-xl border border-stone-100">Création d'un espace de stockage collaboratif sécurisé sur un environnement open-source.</p>
+                            <p class="text-stone-800 font-medium text-sm md:text-base leading-relaxed bg-stone-50 p-4 md:p-5 rounded-xl border border-stone-200">Création d'un espace de stockage collaboratif sécurisé sur un environnement open-source.</p>
                         </section>
                         <section>
                             <h3 class="text-base md:text-lg font-bold text-stone-900 mb-3 flex items-center"><span class="w-6 h-6 md:w-8 md:h-8 rounded text-xs md:text-sm bg-amber-100 text-amber-700 flex items-center justify-center mr-3 shadow-inner">2</span> Missions & Déploiement</h3>
-                            <ul class="list-disc list-inside text-stone-600 text-sm md:text-base leading-relaxed space-y-2">
+                            <ul class="list-disc list-inside text-stone-800 font-medium text-sm md:text-base leading-relaxed space-y-2">
                                 <li><strong>Création de dossiers et fichiers partagés</strong> respectant l'arborescence requise.</li>
                                 <li><strong>Création des utilisateurs et attribution des droits</strong> d'accès rigoureux aux fichiers et aux dossiers.</li>
                             </ul>
@@ -675,11 +693,11 @@
                     <div class="lg:col-span-2 space-y-6 md:space-y-8">
                         <section>
                             <h3 class="text-base md:text-lg font-bold text-stone-900 mb-3 flex items-center"><span class="w-6 h-6 md:w-8 md:h-8 rounded text-xs md:text-sm bg-amber-100 text-amber-700 flex items-center justify-center mr-3 shadow-inner">1</span> Cadre de réalisation</h3>
-                            <p class="text-stone-600 text-sm md:text-base leading-relaxed bg-stone-50 p-4 md:p-5 rounded-xl border border-stone-100">Élaboration d'une trousse à outils portable pour le diagnostic matériel et le support technique.</p>
+                            <p class="text-stone-800 font-medium text-sm md:text-base leading-relaxed bg-stone-50 p-4 md:p-5 rounded-xl border border-stone-200">Élaboration d'une trousse à outils portable pour le diagnostic matériel et le support technique.</p>
                         </section>
                         <section>
                             <h3 class="text-base md:text-lg font-bold text-stone-900 mb-3 flex items-center"><span class="w-6 h-6 md:w-8 md:h-8 rounded text-xs md:text-sm bg-amber-100 text-amber-700 flex items-center justify-center mr-3 shadow-inner">2</span> Missions & Déploiement</h3>
-                            <ul class="list-disc list-inside text-stone-600 text-sm md:text-base leading-relaxed space-y-2">
+                            <ul class="list-disc list-inside text-stone-800 font-medium text-sm md:text-base leading-relaxed space-y-2">
                                 <li><strong>Recherche et sélection des logiciels de dépannages</strong> (diagnostic matériel, etc.).</li>
                                 <li><strong>Test de bon fonctionnement de la mémoire vive</strong> avec résultat satisfaisant.</li>
                                 <li><strong>Test de fonctionnement du processeur et du disque dur</strong> avec résultat satisfaisant.</li>
@@ -719,11 +737,11 @@
                     <div class="lg:col-span-2 space-y-6 md:space-y-8">
                         <section>
                             <h3 class="text-base md:text-lg font-bold text-stone-900 mb-3 flex items-center"><span class="w-6 h-6 md:w-8 md:h-8 rounded text-xs md:text-sm bg-amber-100 text-amber-700 flex items-center justify-center mr-3 shadow-inner">1</span> Cadre de réalisation</h3>
-                            <p class="text-stone-600 text-sm md:text-base leading-relaxed bg-stone-50 p-4 md:p-5 rounded-xl border border-stone-100">Modélisation et déploiement d'une infrastructure réseau locale et étendue optimisée.</p>
+                            <p class="text-stone-800 font-medium text-sm md:text-base leading-relaxed bg-stone-50 p-4 md:p-5 rounded-xl border border-stone-200">Modélisation et déploiement d'une infrastructure réseau locale et étendue optimisée.</p>
                         </section>
                         <section>
                             <h3 class="text-base md:text-lg font-bold text-stone-900 mb-3 flex items-center"><span class="w-6 h-6 md:w-8 md:h-8 rounded text-xs md:text-sm bg-amber-100 text-amber-700 flex items-center justify-center mr-3 shadow-inner">2</span> Missions & Déploiement</h3>
-                            <ul class="list-disc list-inside text-stone-600 text-sm md:text-base leading-relaxed space-y-2">
+                            <ul class="list-disc list-inside text-stone-800 font-medium text-sm md:text-base leading-relaxed space-y-2">
                                 <li><strong>Conception d'une architecture réseau</strong> (LAN, WAN).</li>
                                 <li><strong>Création et configuration du routage inter-VLANs</strong> pour segmenter les flux.</li>
                                 <li><strong>Configuration et test d'un serveur DHCP</strong>.</li>
@@ -746,10 +764,73 @@
         </div>
     </div>
 
+
     <!-- ========================================== -->
-    <!-- LOGIQUE JAVASCRIPT SIMPLIFIÉE -->
+    <!-- LOGIQUE JAVASCRIPT (DIAPORAMA & ONGLETS) -->
     <!-- ========================================== -->
     <script>
+        // Dictionnaire des images de fond : Thèmes précis et liens très fiables (Unsplash)
+        const tabBackgrounds = {
+            'accueil': [
+                'https://images.unsplash.com/photo-1629654297299-c8506221ca97?auto=format&fit=crop&w=1920&q=80', // Terminal Linux
+                'https://images.unsplash.com/photo-1614064641913-6b71a2eabb37?auto=format&fit=crop&w=1920&q=80', // Cybersécurité cadenas
+                'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1920&q=80'  // Câbles réseau
+            ],
+            'realisations': [
+                'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1920&q=80', // Salle de serveurs
+                'https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=1920&q=80', // Baie de serveurs de près
+                'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1920&q=80'  // Code / Matrix
+            ],
+            'parcours': [
+                'https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?auto=format&fit=crop&w=1920&q=80', // Configuration Tech / Hacker
+                'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1920&q=80', // Étude sur ordinateur
+                'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1920&q=80'  // Carte mère / Hardware
+            ],
+            'veille': [
+                'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=80', // Carte mondiale réseau
+                'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=1920&q=80', // Écran de données / Analytics
+                'https://images.unsplash.com/photo-1563206767-5b18f218e8de?auto=format&fit=crop&w=1920&q=80'  // Bouclier sécurité Cyber
+            ],
+            'contact': [
+                'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1920&q=80', // Bureau Tech
+                'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1920&q=80', // Clavier dans l'obscurité
+                'https://images.unsplash.com/photo-1580927752452-89d86da3fa0a?auto=format&fit=crop&w=1920&q=80'  // Administrateur réseaux
+            ]
+        };
+
+        let slideInterval;
+        let currentSlideIndex = 0;
+
+        // Fonction pour initialiser et lancer le diaporama pour l'onglet actif
+        function initSlideshow(tabId) {
+            const container = document.getElementById('slideshow-container');
+            const images = tabBackgrounds[tabId];
+            
+            if (!images) return;
+
+            // Insère les nouvelles images dans le HTML
+            let html = '';
+            images.forEach((url, index) => {
+                html += `<div class="bg-slide ${index === 0 ? 'active' : ''}" style="background-image: url('${url}')"></div>`;
+            });
+            container.innerHTML = html;
+            
+            currentSlideIndex = 0;
+            
+            // Nettoie l'ancien timer pour éviter les bugs
+            clearInterval(slideInterval);
+            
+            // Lance la transition toutes les 5 secondes très exactement
+            slideInterval = setInterval(() => {
+                const slides = container.querySelectorAll('.bg-slide');
+                if (slides.length > 0) {
+                    slides[currentSlideIndex].classList.remove('active');
+                    currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+                    slides[currentSlideIndex].classList.add('active');
+                }
+            }, 5000); 
+        }
+
         // Fonction pour changer d'onglet
         function switchTab(tabId) {
             // Cacher tous les contenus
@@ -764,9 +845,25 @@
             document.getElementById('mob-btn-' + tabId).classList.add('active');
             document.getElementById('desk-btn-' + tabId).classList.add('active');
             
+            // Lancer le nouveau diaporama de fond correspondant à l'onglet
+            initSlideshow(tabId);
+
             // Scroll en haut de la page lors du changement d'onglet
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+
+        // Initialisation FORCÉE au démarrage
+        // Assure que le Javascript affiche bien les images dès le premier chargement de la page
+        function forceStart() {
+            const container = document.getElementById('slideshow-container');
+            if (container && container.innerHTML === '') {
+                initSlideshow('accueil');
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', forceStart);
+        window.addEventListener('load', forceStart);
+        setTimeout(forceStart, 50);
 
         // Fonctions pour les modales de projet
         function openModal(id) {
@@ -776,15 +873,6 @@
             document.getElementById('modal-' + id).classList.add('hidden');
         }
 
-        // Logique du diaporama de fond
-        const slides = document.querySelectorAll('.bg-slide');
-        let currentSlide = 0;
-
-        setInterval(() => {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
-        }, 6000); // Change l'image toutes les 6 secondes
     </script>
 </body>
 </html>
