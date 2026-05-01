@@ -281,12 +281,10 @@
                                 <span class="text-[10px] md:text-xs font-bold text-amber-700 bg-amber-50 px-2 py-1 rounded uppercase tracking-wider">Administration Système</span>
                                 <span class="text-[10px] md:text-xs text-stone-400 font-medium">2025 - 2026</span>
                             </div>
-                            <h3 class="text-lg md:text-xl font-bold text-stone-900 mb-3 group-hover:text-amber-700 transition-colors leading-tight">Déploiement d'une infrastructure Active Directory</h3>
+                            <h3 class="text-lg md:text-xl font-bold text-stone-900 mb-3 group-hover:text-amber-700 transition-colors leading-tight">Mise en place d'une solution d'administration système</h3>
                             <div class="mt-auto pt-3 md:pt-4 border-t border-stone-100 flex flex-wrap gap-1.5 md:gap-2">
-                                <span class="text-[10px] md:text-xs font-medium bg-stone-100 text-stone-600 px-2 md:px-2.5 py-1 rounded-md">Windows Server</span>
-                                <span class="text-[10px] md:text-xs font-medium bg-stone-100 text-stone-600 px-2 md:px-2.5 py-1 rounded-md">DNS</span>
-                                <span class="text-[10px] md:text-xs font-medium bg-stone-100 text-stone-600 px-2 md:px-2.5 py-1 rounded-md">DHCP</span>
-                                <span class="text-[10px] md:text-xs font-medium text-stone-400 px-1 py-1">+2</span>
+                                <span class="text-[10px] md:text-xs font-medium bg-stone-100 text-stone-600 px-2 md:px-2.5 py-1 rounded-md">DNS / DHCP</span>
+                                <span class="text-[10px] md:text-xs font-medium bg-stone-100 text-stone-600 px-2 md:px-2.5 py-1 rounded-md">Active Directory</span>
                             </div>
                         </div>
                     </div>
@@ -296,26 +294,47 @@
                         <div class="h-32 md:h-40 w-full bg-gradient-to-br from-amber-700 to-amber-900 relative overflow-hidden flex items-center justify-center">
                             <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white to-transparent mix-blend-overlay"></div>
                             <div class="text-white/80 flex flex-col items-center">
-                                <i class="fa-solid fa-shield-halved text-2xl"></i>
+                                <i class="fa-brands fa-linux text-2xl"></i>
                                 <span class="text-[10px] md:text-xs mt-2 uppercase tracking-widest font-bold">Voir le projet</span>
                             </div>
                         </div>
                         <div class="p-5 md:p-6 flex-1 flex flex-col">
                             <div class="flex flex-wrap justify-between items-start mb-3 gap-2">
-                                <span class="text-[10px] md:text-xs font-bold text-amber-700 bg-amber-50 px-2 py-1 rounded uppercase tracking-wider">Sécurité & Système</span>
+                                <span class="text-[10px] md:text-xs font-bold text-amber-700 bg-amber-50 px-2 py-1 rounded uppercase tracking-wider">Système & Sécurité</span>
                                 <span class="text-[10px] md:text-xs text-stone-400 font-medium">2025 - 2026</span>
                             </div>
-                            <h3 class="text-lg md:text-xl font-bold text-stone-900 mb-3 group-hover:text-amber-700 transition-colors leading-tight">Sécurisation et Partage de Ressources sous Linux</h3>
+                            <h3 class="text-lg md:text-xl font-bold text-stone-900 mb-3 group-hover:text-amber-700 transition-colors leading-tight">Configuration d'un système de partage de fichiers sous Linux</h3>
                             <div class="mt-auto pt-3 md:pt-4 border-t border-stone-100 flex flex-wrap gap-1.5 md:gap-2">
                                 <span class="text-[10px] md:text-xs font-medium bg-stone-100 text-stone-600 px-2 md:px-2.5 py-1 rounded-md">Linux</span>
-                                <span class="text-[10px] md:text-xs font-medium bg-stone-100 text-stone-600 px-2 md:px-2.5 py-1 rounded-md">Bash</span>
-                                <span class="text-[10px] md:text-xs font-medium bg-stone-100 text-stone-600 px-2 md:px-2.5 py-1 rounded-md">Chmod/Chown</span>
+                                <span class="text-[10px] md:text-xs font-medium bg-stone-100 text-stone-600 px-2 md:px-2.5 py-1 rounded-md">Droits d'accès</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Projet 3 (Ajout de la clé USB) -->
+                    <div onclick="openModal(3)" class="bg-white/90 backdrop-blur rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-stone-200/50 overflow-hidden group cursor-pointer flex flex-col">
+                        <div class="h-32 md:h-40 w-full bg-gradient-to-br from-stone-500 to-stone-700 relative overflow-hidden flex items-center justify-center">
+                            <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white to-transparent mix-blend-overlay"></div>
+                            <div class="text-white/80 flex flex-col items-center">
+                                <i class="fa-solid fa-toolbox text-2xl"></i>
+                                <span class="text-[10px] md:text-xs mt-2 uppercase tracking-widest font-bold">Voir le projet</span>
+                            </div>
+                        </div>
+                        <div class="p-5 md:p-6 flex-1 flex flex-col">
+                            <div class="flex flex-wrap justify-between items-start mb-3 gap-2">
+                                <span class="text-[10px] md:text-xs font-bold text-amber-700 bg-amber-50 px-2 py-1 rounded uppercase tracking-wider">Support & Maintenance</span>
+                                <span class="text-[10px] md:text-xs text-stone-400 font-medium">2025 - 2026</span>
+                            </div>
+                            <h3 class="text-lg md:text-xl font-bold text-stone-900 mb-3 group-hover:text-amber-700 transition-colors leading-tight">Création d'une boite à outil (clé USB bootable)</h3>
+                            <div class="mt-auto pt-3 md:pt-4 border-t border-stone-100 flex flex-wrap gap-1.5 md:gap-2">
+                                <span class="text-[10px] md:text-xs font-medium bg-stone-100 text-stone-600 px-2 md:px-2.5 py-1 rounded-md">Diagnostic Hardware</span>
+                                <span class="text-[10px] md:text-xs font-medium bg-stone-100 text-stone-600 px-2 md:px-2.5 py-1 rounded-md">Documentation</span>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Projet 3 -->
-                    <div onclick="openModal(3)" class="bg-white/90 backdrop-blur rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-stone-200/50 overflow-hidden group cursor-pointer flex flex-col">
+                    <!-- Projet 4 (Réseau) -->
+                    <div onclick="openModal(4)" class="bg-white/90 backdrop-blur rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-stone-200/50 overflow-hidden group cursor-pointer flex flex-col">
                         <div class="h-32 md:h-40 w-full bg-gradient-to-br from-stone-600 to-stone-800 relative overflow-hidden flex items-center justify-center">
                             <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white to-transparent mix-blend-overlay"></div>
                             <div class="text-white/80 flex flex-col items-center">
@@ -328,14 +347,26 @@
                                 <span class="text-[10px] md:text-xs font-bold text-amber-700 bg-amber-50 px-2 py-1 rounded uppercase tracking-wider">Réseau</span>
                                 <span class="text-[10px] md:text-xs text-stone-400 font-medium">2025 - 2026</span>
                             </div>
-                            <h3 class="text-lg md:text-xl font-bold text-stone-900 mb-3 group-hover:text-amber-700 transition-colors leading-tight">Architecture Réseau Hautement Disponible (LAN/WAN)</h3>
+                            <h3 class="text-lg md:text-xl font-bold text-stone-900 mb-3 group-hover:text-amber-700 transition-colors leading-tight">Conception et configuration d'un réseau informatique</h3>
                             <div class="mt-auto pt-3 md:pt-4 border-t border-stone-100 flex flex-wrap gap-1.5 md:gap-2">
-                                <span class="text-[10px] md:text-xs font-medium bg-stone-100 text-stone-600 px-2 md:px-2.5 py-1 rounded-md">Cisco</span>
-                                <span class="text-[10px] md:text-xs font-medium bg-stone-100 text-stone-600 px-2 md:px-2.5 py-1 rounded-md">Routage</span>
+                                <span class="text-[10px] md:text-xs font-medium bg-stone-100 text-stone-600 px-2 md:px-2.5 py-1 rounded-md">LAN/WAN</span>
                                 <span class="text-[10px] md:text-xs font-medium bg-stone-100 text-stone-600 px-2 md:px-2.5 py-1 rounded-md">VLAN</span>
+                                <span class="text-[10px] md:text-xs font-medium bg-stone-100 text-stone-600 px-2 md:px-2.5 py-1 rounded-md">DHCP</span>
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <!-- Call to Action -->
+                <div class="mt-12 md:mt-16 bg-gradient-to-br from-stone-100 to-white/90 backdrop-blur rounded-2xl shadow-sm border border-stone-200/50 p-8 text-center flex flex-col items-center">
+                    <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-envelope text-amber-700 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold text-stone-900 mb-2">Un projet ? Une opportunité ?</h3>
+                    <p class="text-stone-600 mb-6 max-w-xl">Ces réalisations vous interpellent ? N'hésitez pas à me contacter pour échanger sur mes compétences et mes futures missions.</p>
+                    <button onclick="switchTab('contact')" class="px-8 py-3.5 rounded-xl text-white font-bold transition-all shadow-md bg-amber-700 hover:bg-amber-800 hover:-translate-y-0.5 flex items-center">
+                        <i class="fa-solid fa-paper-plane mr-2"></i> Discutons-en
+                    </button>
                 </div>
             </div>
 
@@ -378,6 +409,18 @@
                             <p class="text-stone-600 text-sm md:text-base leading-relaxed">Spécialités : Histoire-Géographie, Géopolitique et Sciences Politiques (HGGSP) / Sciences Économiques et Sociales (SES).</p>
                         </div>
                     </div>
+                </div>
+
+                <!-- Call to Action -->
+                <div class="mt-12 md:mt-16 bg-gradient-to-br from-stone-100 to-white/90 backdrop-blur rounded-2xl shadow-sm border border-stone-200/50 p-8 text-center flex flex-col items-center">
+                    <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-graduation-cap text-amber-700 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold text-stone-900 mb-2">Mon profil vous intéresse ?</h3>
+                    <p class="text-stone-600 mb-6 max-w-xl">Je suis à la recherche d'une entreprise pour mettre en pratique ma formation et développer mes compétences sur le terrain.</p>
+                    <button onclick="switchTab('contact')" class="px-8 py-3.5 rounded-xl text-white font-bold transition-all shadow-md bg-amber-700 hover:bg-amber-800 hover:-translate-y-0.5 flex items-center">
+                        <i class="fa-solid fa-paper-plane mr-2"></i> Me contacter
+                    </button>
                 </div>
             </div>
 
@@ -426,6 +469,18 @@
                             <p class="text-xs md:text-sm">Cet espace accueillera prochainement mes synthèses d'articles.</p>
                         </div>
                     </div>
+                </div>
+
+                <!-- Call to Action -->
+                <div class="mt-12 md:mt-16 bg-gradient-to-br from-stone-100 to-white/90 backdrop-blur rounded-2xl shadow-sm border border-stone-200/50 p-8 text-center flex flex-col items-center max-w-4xl mx-auto">
+                    <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-laptop-code text-amber-700 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold text-stone-900 mb-2">Travaillons ensemble</h3>
+                    <p class="text-stone-600 mb-6 max-w-xl">Ces thématiques sont au cœur des enjeux actuels. N'hésitez pas à me contacter si vous souhaitez en discuter.</p>
+                    <button onclick="switchTab('contact')" class="px-8 py-3.5 rounded-xl text-white font-bold transition-all shadow-md bg-amber-700 hover:bg-amber-800 hover:-translate-y-0.5 flex items-center">
+                        <i class="fa-solid fa-paper-plane mr-2"></i> Me Contacter
+                    </button>
                 </div>
             </div>
 
@@ -524,7 +579,7 @@
             <div class="p-5 md:p-8 border-b border-stone-200 bg-white flex justify-between items-start shrink-0">
                 <div class="pr-4">
                     <span class="text-[10px] md:text-xs font-bold text-amber-700 tracking-widest uppercase mb-1 md:mb-2 block">Administration Système</span>
-                    <h2 class="text-xl md:text-3xl font-extrabold text-stone-900 leading-tight">Déploiement d'une infrastructure Active Directory</h2>
+                    <h2 class="text-xl md:text-3xl font-extrabold text-stone-900 leading-tight">Mise en place d'une solution d'administration système</h2>
                 </div>
                 <button onclick="closeModal(1)" class="p-2 md:p-2.5 bg-stone-100 hover:bg-stone-200 rounded-full transition-colors shadow-sm shrink-0">
                     <i class="fa-solid fa-xmark w-5 h-5 flex items-center justify-center text-stone-600"></i>
@@ -535,11 +590,15 @@
                     <div class="lg:col-span-2 space-y-6 md:space-y-8">
                         <section>
                             <h3 class="text-base md:text-lg font-bold text-stone-900 mb-3 flex items-center"><span class="w-6 h-6 md:w-8 md:h-8 rounded text-xs md:text-sm bg-amber-100 text-amber-700 flex items-center justify-center mr-3 shadow-inner">1</span> Cadre de réalisation</h3>
-                            <p class="text-stone-600 text-sm md:text-base leading-relaxed bg-stone-50 p-4 md:p-5 rounded-xl border border-stone-100">Projet d'infrastructure visant à centraliser la gestion des identités et des accès pour une organisation simulée.</p>
+                            <p class="text-stone-600 text-sm md:text-base leading-relaxed bg-stone-50 p-4 md:p-5 rounded-xl border border-stone-100">Déploiement d'une architecture client-serveur centralisée pour simplifier la gestion du parc informatique.</p>
                         </section>
                         <section>
                             <h3 class="text-base md:text-lg font-bold text-stone-900 mb-3 flex items-center"><span class="w-6 h-6 md:w-8 md:h-8 rounded text-xs md:text-sm bg-amber-100 text-amber-700 flex items-center justify-center mr-3 shadow-inner">2</span> Missions & Déploiement</h3>
-                            <p class="text-stone-600 text-sm md:text-base leading-relaxed">Installation et configuration complète d'un environnement de domaine. Mise en œuvre des services de base (DNS pour la résolution de noms, DHCP pour l'adressage dynamique). Création d'une arborescence d'Unités Organisationnelles (OU), gestion fine des groupes de sécurité et intégration des comptes utilisateurs avec tests d'authentification sur le domaine.</p>
+                            <ul class="list-disc list-inside text-stone-600 text-sm md:text-base leading-relaxed space-y-2">
+                                <li><strong>Configuration de serveur de domaine (DNS)</strong> et des serveurs DHCP.</li>
+                                <li><strong>Configuration des groupes et utilisateur ADS</strong> (Active Directory).</li>
+                                <li><strong>Connection d'un compte utilisateur dans le domaine</strong> pour valider l'infrastructure.</li>
+                            </ul>
                         </section>
                     </div>
                     <div class="space-y-6 md:space-y-8">
@@ -563,7 +622,7 @@
             <div class="p-5 md:p-8 border-b border-stone-200 bg-white flex justify-between items-start shrink-0">
                 <div class="pr-4">
                     <span class="text-[10px] md:text-xs font-bold text-amber-700 tracking-widest uppercase mb-1 md:mb-2 block">Sécurité & Système</span>
-                    <h2 class="text-xl md:text-3xl font-extrabold text-stone-900 leading-tight">Sécurisation et Partage de Ressources sous Linux</h2>
+                    <h2 class="text-xl md:text-3xl font-extrabold text-stone-900 leading-tight">Configuration d'un système de partage de fichier et de dossiers sous Linux</h2>
                 </div>
                 <button onclick="closeModal(2)" class="p-2 md:p-2.5 bg-stone-100 hover:bg-stone-200 rounded-full transition-colors shadow-sm shrink-0">
                     <i class="fa-solid fa-xmark w-5 h-5 flex items-center justify-center text-stone-600"></i>
@@ -574,11 +633,14 @@
                     <div class="lg:col-span-2 space-y-6 md:space-y-8">
                         <section>
                             <h3 class="text-base md:text-lg font-bold text-stone-900 mb-3 flex items-center"><span class="w-6 h-6 md:w-8 md:h-8 rounded text-xs md:text-sm bg-amber-100 text-amber-700 flex items-center justify-center mr-3 shadow-inner">1</span> Cadre de réalisation</h3>
-                            <p class="text-stone-600 text-sm md:text-base leading-relaxed bg-stone-50 p-4 md:p-5 rounded-xl border border-stone-100">Mise en place d'un serveur de fichiers sécurisé respectant le principe de moindre privilège.</p>
+                            <p class="text-stone-600 text-sm md:text-base leading-relaxed bg-stone-50 p-4 md:p-5 rounded-xl border border-stone-100">Création d'un espace de stockage collaboratif sécurisé sur un environnement open-source.</p>
                         </section>
                         <section>
                             <h3 class="text-base md:text-lg font-bold text-stone-900 mb-3 flex items-center"><span class="w-6 h-6 md:w-8 md:h-8 rounded text-xs md:text-sm bg-amber-100 text-amber-700 flex items-center justify-center mr-3 shadow-inner">2</span> Missions & Déploiement</h3>
-                            <p class="text-stone-600 text-sm md:text-base leading-relaxed">Conception de l'architecture des répertoires partagés sur un système Linux. Création automatisée des utilisateurs et groupes associés. Configuration stricte des permissions d'accès (lecture, écriture, exécution) pour garantir la confidentialité et l'intégrité des données entre les différents services de l'entreprise.</p>
+                            <ul class="list-disc list-inside text-stone-600 text-sm md:text-base leading-relaxed space-y-2">
+                                <li><strong>Création de dossiers et fichiers partagés</strong> respectant l'arborescence requise.</li>
+                                <li><strong>Création des utilisateurs et attribution des droits</strong> d'accès rigoureux aux fichiers et aux dossiers.</li>
+                            </ul>
                         </section>
                     </div>
                     <div class="space-y-6 md:space-y-8">
@@ -601,8 +663,8 @@
         <div class="bg-stone-50 md:rounded-2xl w-full max-w-5xl h-[90vh] md:h-auto md:max-h-[95vh] flex flex-col shadow-2xl relative rounded-t-3xl overflow-hidden">
             <div class="p-5 md:p-8 border-b border-stone-200 bg-white flex justify-between items-start shrink-0">
                 <div class="pr-4">
-                    <span class="text-[10px] md:text-xs font-bold text-amber-700 tracking-widest uppercase mb-1 md:mb-2 block">Réseau</span>
-                    <h2 class="text-xl md:text-3xl font-extrabold text-stone-900 leading-tight">Architecture Réseau Hautement Disponible (LAN/WAN)</h2>
+                    <span class="text-[10px] md:text-xs font-bold text-amber-700 tracking-widest uppercase mb-1 md:mb-2 block">Support & Maintenance</span>
+                    <h2 class="text-xl md:text-3xl font-extrabold text-stone-900 leading-tight">Création d'une boite à outil (clé USB bootable)</h2>
                 </div>
                 <button onclick="closeModal(3)" class="p-2 md:p-2.5 bg-stone-100 hover:bg-stone-200 rounded-full transition-colors shadow-sm shrink-0">
                     <i class="fa-solid fa-xmark w-5 h-5 flex items-center justify-center text-stone-600"></i>
@@ -613,11 +675,60 @@
                     <div class="lg:col-span-2 space-y-6 md:space-y-8">
                         <section>
                             <h3 class="text-base md:text-lg font-bold text-stone-900 mb-3 flex items-center"><span class="w-6 h-6 md:w-8 md:h-8 rounded text-xs md:text-sm bg-amber-100 text-amber-700 flex items-center justify-center mr-3 shadow-inner">1</span> Cadre de réalisation</h3>
-                            <p class="text-stone-600 text-sm md:text-base leading-relaxed bg-stone-50 p-4 md:p-5 rounded-xl border border-stone-100">Conception d'une topologie réseau segmentée pour isoler les flux et optimiser les performances.</p>
+                            <p class="text-stone-600 text-sm md:text-base leading-relaxed bg-stone-50 p-4 md:p-5 rounded-xl border border-stone-100">Élaboration d'une trousse à outils portable pour le diagnostic matériel et le support technique.</p>
                         </section>
                         <section>
                             <h3 class="text-base md:text-lg font-bold text-stone-900 mb-3 flex items-center"><span class="w-6 h-6 md:w-8 md:h-8 rounded text-xs md:text-sm bg-amber-100 text-amber-700 flex items-center justify-center mr-3 shadow-inner">2</span> Missions & Déploiement</h3>
-                            <p class="text-stone-600 text-sm md:text-base leading-relaxed">Analyse des besoins et modélisation d'une architecture LAN/WAN. Déploiement de VLANs pour la segmentation logique des départements. Configuration du routage inter-VLANs pour permettre la communication contrôlée. Intégration de services DHCP centralisés et sécurisation des accès sans fil (Points d'accès).</p>
+                            <ul class="list-disc list-inside text-stone-600 text-sm md:text-base leading-relaxed space-y-2">
+                                <li><strong>Recherche et sélection des logiciels de dépannages</strong> (diagnostic matériel, etc.).</li>
+                                <li><strong>Test de bon fonctionnement de la mémoire vive</strong> avec résultat satisfaisant.</li>
+                                <li><strong>Test de fonctionnement du processeur et du disque dur</strong> avec résultat satisfaisant.</li>
+                                <li><strong>Recommandation et documentation technique</strong>.</li>
+                            </ul>
+                        </section>
+                    </div>
+                    <div class="space-y-6 md:space-y-8">
+                        <div class="bg-stone-900 text-white p-5 md:p-6 rounded-xl shadow-lg relative overflow-hidden">
+                            <div class="absolute top-0 right-0 w-20 h-20 bg-amber-600/20 rounded-bl-full -mr-4 -mt-4"></div>
+                            <h3 class="text-xs md:text-sm font-bold text-amber-500 uppercase tracking-widest mb-3 md:mb-4">Validation des compétences</h3>
+                            <ul class="space-y-3 md:space-y-4 relative z-10">
+                                <li class="flex items-start text-xs md:text-sm"><i class="fa-solid fa-circle-check text-amber-500 mr-2 md:mr-3 shrink-0 mt-0.5"></i><span class="font-medium leading-tight text-stone-200">Répondre aux incidents et aux demandes d'assistance</span></li>
+                                <li class="flex items-start text-xs md:text-sm"><i class="fa-solid fa-circle-check text-amber-500 mr-2 md:mr-3 shrink-0 mt-0.5"></i><span class="font-medium leading-tight text-stone-200">Gérer le patrimoine informatique</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modale Projet 4 -->
+    <div id="modal-4" class="hidden fixed inset-0 z-50 flex items-end md:items-center justify-center bg-stone-900/90 backdrop-blur-sm sm:p-4 animate-fadeIn">
+        <div class="bg-stone-50 md:rounded-2xl w-full max-w-5xl h-[90vh] md:h-auto md:max-h-[95vh] flex flex-col shadow-2xl relative rounded-t-3xl overflow-hidden">
+            <div class="p-5 md:p-8 border-b border-stone-200 bg-white flex justify-between items-start shrink-0">
+                <div class="pr-4">
+                    <span class="text-[10px] md:text-xs font-bold text-amber-700 tracking-widest uppercase mb-1 md:mb-2 block">Réseau</span>
+                    <h2 class="text-xl md:text-3xl font-extrabold text-stone-900 leading-tight">Conception et configuration d'un réseau informatique</h2>
+                </div>
+                <button onclick="closeModal(4)" class="p-2 md:p-2.5 bg-stone-100 hover:bg-stone-200 rounded-full transition-colors shadow-sm shrink-0">
+                    <i class="fa-solid fa-xmark w-5 h-5 flex items-center justify-center text-stone-600"></i>
+                </button>
+            </div>
+            <div class="p-5 md:p-8 overflow-y-auto flex-1 bg-white">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+                    <div class="lg:col-span-2 space-y-6 md:space-y-8">
+                        <section>
+                            <h3 class="text-base md:text-lg font-bold text-stone-900 mb-3 flex items-center"><span class="w-6 h-6 md:w-8 md:h-8 rounded text-xs md:text-sm bg-amber-100 text-amber-700 flex items-center justify-center mr-3 shadow-inner">1</span> Cadre de réalisation</h3>
+                            <p class="text-stone-600 text-sm md:text-base leading-relaxed bg-stone-50 p-4 md:p-5 rounded-xl border border-stone-100">Modélisation et déploiement d'une infrastructure réseau locale et étendue optimisée.</p>
+                        </section>
+                        <section>
+                            <h3 class="text-base md:text-lg font-bold text-stone-900 mb-3 flex items-center"><span class="w-6 h-6 md:w-8 md:h-8 rounded text-xs md:text-sm bg-amber-100 text-amber-700 flex items-center justify-center mr-3 shadow-inner">2</span> Missions & Déploiement</h3>
+                            <ul class="list-disc list-inside text-stone-600 text-sm md:text-base leading-relaxed space-y-2">
+                                <li><strong>Conception d'une architecture réseau</strong> (LAN, WAN).</li>
+                                <li><strong>Création et configuration du routage inter-VLANs</strong> pour segmenter les flux.</li>
+                                <li><strong>Configuration et test d'un serveur DHCP</strong>.</li>
+                                <li><strong>Configuration d'un point d'accès et routage</strong>.</li>
+                            </ul>
                         </section>
                     </div>
                     <div class="space-y-6 md:space-y-8">
@@ -634,7 +745,6 @@
             </div>
         </div>
     </div>
-
 
     <!-- ========================================== -->
     <!-- LOGIQUE JAVASCRIPT SIMPLIFIÉE -->
@@ -653,6 +763,9 @@
             // Ajouter la classe active aux boutons du tab actuel
             document.getElementById('mob-btn-' + tabId).classList.add('active');
             document.getElementById('desk-btn-' + tabId).classList.add('active');
+            
+            // Scroll en haut de la page lors du changement d'onglet
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         // Fonctions pour les modales de projet
