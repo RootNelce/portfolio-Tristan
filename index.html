@@ -136,7 +136,7 @@
     <aside class="hidden md:flex w-72 flex-col fixed h-full shadow-2xl z-20 border-r border-white/10 bg-stone-900/95 backdrop-blur-sm">
         <div class="p-8 flex flex-col items-center border-b border-stone-800">
             <div class="w-28 h-28 rounded-full bg-stone-800 border-2 border-stone-700 flex items-center justify-center mb-4 overflow-hidden group">
-                <i class="fa-solid fa-user text-5xl text-stone-600 group-hover:scale-110 transition-transform duration-300"></i>
+                <img src="photo-profil.jpg" alt="Tristan Giraud" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
             </div>
             <div class="text-center">
                 <h1 class="text-xl font-bold text-white tracking-wider uppercase">Tristan GIRAUD</h1>
@@ -177,8 +177,8 @@
             <!-- === ONGLET : ACCUEIL === -->
             <div id="tab-accueil" class="tab-content active animate-fadeIn space-y-10 md:space-y-12">
                 <header class="border-b pb-6 md:pb-8 border-stone-200/50 text-center md:text-left">
-                    <div class="md:hidden w-24 h-24 mx-auto bg-stone-200 rounded-full flex items-center justify-center mb-4 shadow-inner border-2 border-amber-600/30">
-                        <i class="fa-solid fa-user text-4xl text-stone-500"></i>
+                    <div class="md:hidden w-24 h-24 mx-auto bg-stone-200 rounded-full flex items-center justify-center mb-4 shadow-inner border-2 border-amber-600/30 overflow-hidden">
+                        <img src="photo-profil.jpg" alt="Tristan Giraud" class="w-full h-full object-cover">
                     </div>
                     
                     <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white tracking-tight mb-2 md:mb-3 drop-shadow-md">
@@ -201,15 +201,19 @@
                     <div class="lg:col-span-2 space-y-8">
                         <section>
                             <h4 class="text-xs font-bold tracking-widest text-stone-500 uppercase mb-3 md:mb-4 bg-white/95 backdrop-blur-sm px-3 py-1.5 inline-block rounded shadow-md border border-stone-200/50">Executive Summary</h4>
-                            <p class="text-base md:text-lg leading-relaxed text-stone-900 bg-white/95 backdrop-blur-sm p-6 md:p-8 rounded-2xl shadow-xl border border-stone-200/50">
-                                Actuellement en formation BTS SIO option SISR, je me spécialise dans la sécurisation et l'optimisation des infrastructures informatiques. Passionné par l'innovation technologique et doté d'une forte capacité d'adaptation, j'accompagne la transformation digitale des entreprises en garantissant la fiabilité et l'intégrité de leurs systèmes d'information.
-                            </p>
+                            <div class="text-sm md:text-base font-medium leading-relaxed text-stone-900 bg-white/95 backdrop-blur-sm p-6 md:p-8 rounded-2xl shadow-xl border border-stone-200/50 space-y-4">
+                                <p>Depuis mon enfance, les systèmes de sécurité m’ont toujours fasciné. J’éprouvais un réel plaisir à comprendre leur fonctionnement. Après l’école, au collège comme au lycée, je passais mon temps libre à résoudre des casse-têtes chez moi et à lire des encyclopédies sur les inventions et leurs mécanismes. Un trait qui me définit particulièrement est le sens de la justice.</p>
+                                <p>Avec le temps, j’ai réalisé que mes choix d’orientation ne correspondaient pas à mes aspirations. J’ai donc quitté ma faculté de droit, où je ne trouvais tout simplement pas ma place. Il m’a fallu réfléchir à une voie qui réunisse la sécurité, la justice et la réflexion. C’est ainsi qu’une nouvelle direction s’est imposée à moi : la Cybersécurité.</p>
+                                <p>Avant de pouvoir intégrer le CNED dans ce domaine, j’ai dû effectuer une remise à niveau d’un an en mathématiques. Le CNED m’a ensuite proposé de poursuivre deux années d’études en préparant un BTS SIO, option orientée vers la sécurité des infrastructures et des services réseaux. Les deux premières années n’ont pas été simples, et j’ai dû recommencer ce BTS.</p>
+                                <p>Depuis, j’ai développé de solides compétences en dépannage (imprimantes, postes, serveurs), en gestion de projet (méthode Agile), ainsi qu’en conception et configuration de réseaux informatiques.</p>
+                            </div>
                         </section>
 
                         <div class="flex flex-col sm:flex-row gap-4 pt-2">
-                            <button class="w-full sm:w-auto flex items-center justify-center px-6 py-4 md:py-3 rounded-xl text-white font-bold shadow-lg transition-all bg-amber-600 hover:bg-amber-700">
+                            <!-- Remplacement de la balise <button> par une balise <a> avec l'attribut download -->
+                            <a href="CV_Tristan_GIRAUD.pdf" download="CV_Tristan_GIRAUD.pdf" target="_blank" class="w-full sm:w-auto flex items-center justify-center px-6 py-4 md:py-3 rounded-xl text-white font-bold shadow-lg transition-all bg-amber-600 hover:bg-amber-700">
                                 <i class="fa-solid fa-download mr-2"></i> Télécharger mon CV
-                            </button>
+                            </a>
                             <button onclick="switchTab('contact')" class="w-full sm:w-auto flex items-center justify-center px-6 py-4 md:py-3 rounded-xl text-stone-800 bg-white border border-stone-200 hover:bg-stone-50 font-bold shadow-lg transition-all">
                                 Me contacter <i class="fa-solid fa-chevron-right ml-2 text-sm"></i>
                             </button>
@@ -585,8 +589,38 @@
                 </div>
             </div>
 
+            <!-- ========================================== -->
+            <!-- DROITS D'AUTEUR (FOOTER) -->
+            <!-- ========================================== -->
+            <footer class="w-full text-center py-6 mt-16 border-t border-stone-400/30">
+                <p class="text-stone-800 text-xs md:text-sm font-bold bg-white/80 backdrop-blur-sm inline-block px-4 py-2 rounded-full shadow-sm border border-stone-200/50">
+                    &copy; <script>document.write(new Date().getFullYear())</script> Tristan GIRAUD. Tous droits réservés.
+                </p>
+            </footer>
+
         </div>
     </main>
+
+    <!-- ========================================== -->
+    <!-- ICÔNES FLOTTANTES (CONTACT RAPIDE) -->
+    <!-- ========================================== -->
+    <div class="fixed z-50 right-4 bottom-24 md:right-8 md:bottom-8 flex flex-col gap-4 animate-fadeIn">
+        <!-- Icône LinkedIn -->
+        <a href="https://linkedin.com/in/VOTRE_LIEN_ICI" target="_blank" class="w-12 h-12 md:w-14 md:h-14 bg-[#0A66C2] text-white rounded-full flex items-center justify-center shadow-[0_8px_30px_rgb(0,0,0,0.3)] hover:scale-110 hover:-translate-y-1 transition-all group relative border-2 border-white/20">
+            <i class="fa-brands fa-linkedin-in text-xl md:text-2xl"></i>
+            <span class="absolute right-full mr-4 bg-stone-900 text-white text-xs px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none font-bold">Mon LinkedIn</span>
+        </a>
+        <!-- Icône Gmail -->
+        <a href="mailto:tristan.giraud01@gmail.com" class="w-12 h-12 md:w-14 md:h-14 bg-[#EA4335] text-white rounded-full flex items-center justify-center shadow-[0_8px_30px_rgb(0,0,0,0.3)] hover:scale-110 hover:-translate-y-1 transition-all group relative border-2 border-white/20">
+            <i class="fa-solid fa-envelope text-xl md:text-2xl"></i>
+            <span class="absolute right-full mr-4 bg-stone-900 text-white text-xs px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none font-bold">M'envoyer un email</span>
+        </a>
+        <!-- Icône Téléphone -->
+        <a href="tel:+33613686874" class="w-12 h-12 md:w-14 md:h-14 bg-[#34A853] text-white rounded-full flex items-center justify-center shadow-[0_8px_30px_rgb(0,0,0,0.3)] hover:scale-110 hover:-translate-y-1 transition-all group relative border-2 border-white/20">
+            <i class="fa-solid fa-phone text-xl md:text-2xl"></i>
+            <span class="absolute right-full mr-4 bg-stone-900 text-white text-xs px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none font-bold">M'appeler</span>
+        </a>
+    </div>
 
     <!-- ========================================== -->
     <!-- FENÊTRES MODALES (PROJETS) -->
