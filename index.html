@@ -37,13 +37,13 @@
     </script>
     
     <style>
-        /* Animations fluides */
+        /* Animations fluides sans mouvement (plus de dandinement) */
         .animate-fadeIn {
             animation: fadeIn 0.4s ease-out forwards;
         }
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         
         /* Pour le menu fixe en bas sur iPhone/Mobile */
@@ -55,7 +55,7 @@
         .tab-content { display: none; }
         .tab-content.active { display: block; }
         
-        /* Animation du fond d'écran dynamique */
+        /* Animation du fond d'écran dynamique (100% fixe, sans zoom) */
         .bg-slideshow {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -69,13 +69,11 @@
             background-size: cover;
             background-position: center;
             opacity: 0;
-            transform: scale(1);
-            /* Transition fluide de 2s pour s'intégrer parfaitement aux 5s d'intervalle */
-            transition: opacity 2s ease-in-out, transform 8s linear; 
+            /* Transition fluide de 2s sans aucun mouvement/scale */
+            transition: opacity 2s ease-in-out; 
         }
         .bg-slide.active {
             opacity: 1;
-            transform: scale(1.05); /* Effet de léger zoom "Ken Burns" */
         }
 
         /* Style des boutons de navigation actifs */
@@ -97,10 +95,7 @@
     <!-- DIAPORAMA DE FOND (Généré par Javascript) -->
     <!-- ========================================== -->
     <div class="bg-slideshow">
-        <!-- Le conteneur où les images vont défiler selon la page -->
         <div id="slideshow-container" class="absolute inset-0"></div>
-        
-        <!-- Voile très léger pour adoucir le fond SANS FLOU, les images resteront nettes -->
         <div class="absolute inset-0 bg-stone-900/30 pointer-events-none"></div>
     </div>
 
@@ -136,7 +131,8 @@
     <aside class="hidden md:flex w-72 flex-col fixed h-full shadow-2xl z-20 border-r border-white/10 bg-stone-900/95 backdrop-blur-sm">
         <div class="p-8 flex flex-col items-center border-b border-stone-800">
             <div class="w-28 h-28 rounded-full bg-stone-800 border-2 border-stone-700 flex items-center justify-center mb-4 overflow-hidden group">
-                <img src="photo-profil.jpg" alt="Tristan Giraud" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                <!-- Image de profil -->
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80" alt="Tristan Giraud" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
             </div>
             <div class="text-center">
                 <h1 class="text-xl font-bold text-white tracking-wider uppercase">Tristan GIRAUD</h1>
@@ -170,15 +166,14 @@
     <!-- ========================================== -->
     <!-- ZONE DE CONTENU PRINCIPAL -->
     <!-- ========================================== -->
-    <!-- Le fond principal (main) est transparent (bg-transparent). Le flou a été retiré. -->
-    <main class="flex-1 w-full z-10 relative md:ml-72 p-5 pb-24 pt-8 md:p-12 lg:p-16 overflow-y-auto min-h-screen bg-transparent border-l border-white/10 shadow-2xl">
+    <main class="flex-1 w-full z-10 relative md:ml-72 p-5 pb-28 pt-8 md:p-12 lg:p-16 overflow-y-auto min-h-screen bg-transparent border-l border-white/10 shadow-2xl">
         <div class="max-w-6xl mx-auto relative">
 
             <!-- === ONGLET : ACCUEIL === -->
             <div id="tab-accueil" class="tab-content active animate-fadeIn space-y-10 md:space-y-12">
                 <header class="border-b pb-6 md:pb-8 border-stone-200/50 text-center md:text-left">
                     <div class="md:hidden w-24 h-24 mx-auto bg-stone-200 rounded-full flex items-center justify-center mb-4 shadow-inner border-2 border-amber-600/30 overflow-hidden">
-                        <img src="photo-profil.jpg" alt="Tristan Giraud" class="w-full h-full object-cover">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80" alt="Tristan Giraud" class="w-full h-full object-cover">
                     </div>
                     
                     <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white tracking-tight mb-2 md:mb-3 drop-shadow-md">
@@ -189,7 +184,6 @@
                     </h3>
                     
                     <div class="flex flex-wrap justify-center md:justify-start gap-3 text-xs md:text-sm text-stone-800 font-medium">
-                        <!-- Les cartes d'infos sont blanches et quasi-opaques pour être lisibles sur les images -->
                         <span class="flex items-center bg-white/95 backdrop-blur-sm px-3 py-2 rounded-md shadow-lg border border-stone-200/50"><i class="fa-solid fa-envelope mr-2 text-amber-600"></i> tristan.giraud01@gmail.com</span>
                         <span class="flex items-center bg-white/95 backdrop-blur-sm px-3 py-2 rounded-md shadow-lg border border-stone-200/50"><i class="fa-solid fa-phone mr-2 text-amber-600"></i> (+33) 06 13 68 68 74</span>
                         <span class="flex items-center bg-white/95 backdrop-blur-sm px-3 py-2 rounded-md shadow-lg border border-stone-200/50"><i class="fa-solid fa-location-dot mr-2 text-amber-600"></i> Poissy, Île-de-France</span>
@@ -210,7 +204,6 @@
                         </section>
 
                         <div class="flex flex-col sm:flex-row gap-4 pt-2">
-                            <!-- Remplacement de la balise <button> par une balise <a> avec l'attribut download -->
                             <a href="CV_Tristan_GIRAUD.pdf" download="CV_Tristan_GIRAUD.pdf" target="_blank" class="w-full sm:w-auto flex items-center justify-center px-6 py-4 md:py-3 rounded-xl text-white font-bold shadow-lg transition-all bg-amber-600 hover:bg-amber-700">
                                 <i class="fa-solid fa-download mr-2"></i> Télécharger mon CV
                             </a>
@@ -287,11 +280,11 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                     <!-- Projet 1 -->
                     <div onclick="openModal(1)" class="bg-white/95 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-stone-200/50 overflow-hidden group cursor-pointer flex flex-col">
-                        <div class="h-32 md:h-40 w-full bg-gradient-to-br from-stone-700 to-stone-900 relative overflow-hidden flex items-center justify-center">
-                            <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white to-transparent mix-blend-overlay"></div>
-                            <div class="text-white/90 flex flex-col items-center">
-                                <i class="fa-solid fa-server text-2xl"></i>
-                                <span class="text-[10px] md:text-xs mt-2 uppercase tracking-widest font-bold">Voir le projet</span>
+                        <div class="h-32 md:h-40 w-full bg-cover bg-center relative overflow-hidden flex items-center justify-center" style="background-image: url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80');">
+                            <div class="absolute inset-0 bg-stone-900/60 group-hover:bg-stone-900/40 transition-all duration-300"></div>
+                            <div class="text-white flex flex-col items-center relative z-10 transform group-hover:scale-110 transition-transform duration-300">
+                                <i class="fa-solid fa-server text-3xl drop-shadow-lg mb-1"></i>
+                                <span class="text-[10px] md:text-xs mt-1 uppercase tracking-widest font-bold bg-stone-900/50 backdrop-blur-sm px-3 py-1 rounded shadow">Voir le projet</span>
                             </div>
                         </div>
                         <div class="p-5 md:p-6 flex-1 flex flex-col">
@@ -309,11 +302,11 @@
 
                     <!-- Projet 2 -->
                     <div onclick="openModal(2)" class="bg-white/95 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-stone-200/50 overflow-hidden group cursor-pointer flex flex-col">
-                        <div class="h-32 md:h-40 w-full bg-gradient-to-br from-amber-700 to-amber-900 relative overflow-hidden flex items-center justify-center">
-                            <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white to-transparent mix-blend-overlay"></div>
-                            <div class="text-white/90 flex flex-col items-center">
-                                <i class="fa-brands fa-linux text-2xl"></i>
-                                <span class="text-[10px] md:text-xs mt-2 uppercase tracking-widest font-bold">Voir le projet</span>
+                        <div class="h-32 md:h-40 w-full bg-cover bg-center relative overflow-hidden flex items-center justify-center" style="background-image: url('https://images.unsplash.com/photo-1629654297299-c8506221ca97?auto=format&fit=crop&w=800&q=80');">
+                            <div class="absolute inset-0 bg-stone-900/60 group-hover:bg-stone-900/40 transition-all duration-300"></div>
+                            <div class="text-white flex flex-col items-center relative z-10 transform group-hover:scale-110 transition-transform duration-300">
+                                <i class="fa-brands fa-linux text-3xl drop-shadow-lg mb-1"></i>
+                                <span class="text-[10px] md:text-xs mt-1 uppercase tracking-widest font-bold bg-stone-900/50 backdrop-blur-sm px-3 py-1 rounded shadow">Voir le projet</span>
                             </div>
                         </div>
                         <div class="p-5 md:p-6 flex-1 flex flex-col">
@@ -331,11 +324,11 @@
 
                     <!-- Projet 3 -->
                     <div onclick="openModal(3)" class="bg-white/95 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-stone-200/50 overflow-hidden group cursor-pointer flex flex-col">
-                        <div class="h-32 md:h-40 w-full bg-gradient-to-br from-stone-500 to-stone-700 relative overflow-hidden flex items-center justify-center">
-                            <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white to-transparent mix-blend-overlay"></div>
-                            <div class="text-white/90 flex flex-col items-center">
-                                <i class="fa-solid fa-toolbox text-2xl"></i>
-                                <span class="text-[10px] md:text-xs mt-2 uppercase tracking-widest font-bold">Voir le projet</span>
+                        <div class="h-32 md:h-40 w-full bg-cover bg-center relative overflow-hidden flex items-center justify-center" style="background-image: url('https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?auto=format&fit=crop&w=800&q=80');">
+                            <div class="absolute inset-0 bg-stone-900/60 group-hover:bg-stone-900/40 transition-all duration-300"></div>
+                            <div class="text-white flex flex-col items-center relative z-10 transform group-hover:scale-110 transition-transform duration-300">
+                                <i class="fa-solid fa-toolbox text-3xl drop-shadow-lg mb-1"></i>
+                                <span class="text-[10px] md:text-xs mt-1 uppercase tracking-widest font-bold bg-stone-900/50 backdrop-blur-sm px-3 py-1 rounded shadow">Voir le projet</span>
                             </div>
                         </div>
                         <div class="p-5 md:p-6 flex-1 flex flex-col">
@@ -353,11 +346,11 @@
                     
                     <!-- Projet 4 -->
                     <div onclick="openModal(4)" class="bg-white/95 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-stone-200/50 overflow-hidden group cursor-pointer flex flex-col">
-                        <div class="h-32 md:h-40 w-full bg-gradient-to-br from-stone-600 to-stone-800 relative overflow-hidden flex items-center justify-center">
-                            <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white to-transparent mix-blend-overlay"></div>
-                            <div class="text-white/90 flex flex-col items-center">
-                                <i class="fa-solid fa-network-wired text-2xl"></i>
-                                <span class="text-[10px] md:text-xs mt-2 uppercase tracking-widest font-bold">Voir le projet</span>
+                        <div class="h-32 md:h-40 w-full bg-cover bg-center relative overflow-hidden flex items-center justify-center" style="background-image: url('https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80');">
+                            <div class="absolute inset-0 bg-stone-900/60 group-hover:bg-stone-900/40 transition-all duration-300"></div>
+                            <div class="text-white flex flex-col items-center relative z-10 transform group-hover:scale-110 transition-transform duration-300">
+                                <i class="fa-solid fa-network-wired text-3xl drop-shadow-lg mb-1"></i>
+                                <span class="text-[10px] md:text-xs mt-1 uppercase tracking-widest font-bold bg-stone-900/50 backdrop-blur-sm px-3 py-1 rounded shadow">Voir le projet</span>
                             </div>
                         </div>
                         <div class="p-5 md:p-6 flex-1 flex flex-col">
@@ -382,7 +375,7 @@
                     </div>
                     <h3 class="text-xl md:text-2xl font-bold text-stone-900 mb-2">Un projet ? Une opportunité ?</h3>
                     <p class="text-stone-800 font-medium mb-6 max-w-xl">Ces réalisations vous interpellent ? N'hésitez pas à me contacter pour échanger sur mes compétences et mes futures missions.</p>
-                    <button onclick="switchTab('contact')" class="px-8 py-3.5 rounded-xl text-white font-bold transition-all shadow-md bg-amber-600 hover:bg-amber-700 hover:-translate-y-0.5 flex items-center">
+                    <button onclick="switchTab('contact')" class="px-8 py-3.5 rounded-xl text-white font-bold transition-all shadow-md bg-amber-600 hover:bg-amber-700 flex items-center">
                         <i class="fa-solid fa-paper-plane mr-2"></i> Discutons-en
                     </button>
                 </div>
@@ -440,7 +433,7 @@
                     </div>
                     <h3 class="text-xl md:text-2xl font-bold text-stone-900 mb-2">Mon profil vous intéresse ?</h3>
                     <p class="text-stone-800 font-medium mb-6 max-w-xl">Je suis à la recherche d'une entreprise pour mettre en pratique ma formation et développer mes compétences sur le terrain.</p>
-                    <button onclick="switchTab('contact')" class="px-8 py-3.5 rounded-xl text-white font-bold transition-all shadow-md bg-amber-600 hover:bg-amber-700 hover:-translate-y-0.5 flex items-center">
+                    <button onclick="switchTab('contact')" class="px-8 py-3.5 rounded-xl text-white font-bold transition-all shadow-md bg-amber-600 hover:bg-amber-700 flex items-center">
                         <i class="fa-solid fa-paper-plane mr-2"></i> Me contacter
                     </button>
                 </div>
@@ -500,7 +493,7 @@
                     </div>
                     <h3 class="text-xl md:text-2xl font-bold text-stone-900 mb-2">Travaillons ensemble</h3>
                     <p class="text-stone-800 font-medium mb-6 max-w-xl">Ces thématiques sont au cœur des enjeux actuels. N'hésitez pas à me contacter si vous souhaitez en discuter.</p>
-                    <button onclick="switchTab('contact')" class="px-8 py-3.5 rounded-xl text-white font-bold transition-all shadow-md bg-amber-600 hover:bg-amber-700 hover:-translate-y-0.5 flex items-center">
+                    <button onclick="switchTab('contact')" class="px-8 py-3.5 rounded-xl text-white font-bold transition-all shadow-md bg-amber-600 hover:bg-amber-700 flex items-center">
                         <i class="fa-solid fa-paper-plane mr-2"></i> Me Contacter
                     </button>
                 </div>
@@ -541,7 +534,7 @@
                                 <label class="block text-xs font-bold text-stone-500 uppercase tracking-wide mb-1 md:mb-2">Message</label>
                                 <textarea rows="5" class="w-full p-3 rounded-xl border border-stone-300 bg-white focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all text-sm resize-none shadow-sm" placeholder="Détaillez votre proposition ici..." required></textarea>
                             </div>
-                            <button type="submit" class="w-full py-4 rounded-xl text-white font-bold flex items-center justify-center transition-all shadow-md bg-amber-600 hover:bg-amber-700 hover:-translate-y-0.5">
+                            <button type="submit" class="w-full py-4 rounded-xl text-white font-bold flex items-center justify-center transition-all shadow-md bg-amber-600 hover:bg-amber-700 flex items-center">
                                 <i class="fa-solid fa-paper-plane mr-2"></i> Envoyer
                             </button>
                         </form>
@@ -575,7 +568,7 @@
                                     </div>
                                     <i class="fa-solid fa-chevron-right ml-auto text-stone-400 group-hover:text-amber-500 transition-colors"></i>
                                 </a>
-                                <a href="https://github.com/GoodbyeKaliDragon" target="_blank" class="flex items-center p-3 md:p-4 rounded-xl border border-stone-200 hover:border-stone-800 hover:shadow-md transition-all group bg-stone-50">
+                                <a href="LIEN_GITHUB_ICI" target="_blank" class="flex items-center p-3 md:p-4 rounded-xl border border-stone-200 hover:border-stone-800 hover:shadow-md transition-all group bg-stone-50">
                                     <i class="fa-brands fa-github text-3xl text-stone-800 mr-3 md:mr-4 group-hover:scale-110 transition-transform shrink-0"></i>
                                     <div>
                                         <strong class="block text-stone-900 font-bold text-sm md:text-base">GitHub</strong>
@@ -589,34 +582,32 @@
                 </div>
             </div>
 
-            <!-- ========================================== -->
-            <!-- DROITS D'AUTEUR (FOOTER) -->
-            <!-- ========================================== -->
-            <footer class="w-full text-center py-6 mt-16 border-t border-stone-400/30">
-                <p class="text-stone-800 text-xs md:text-sm font-bold bg-white/80 backdrop-blur-sm inline-block px-4 py-2 rounded-full shadow-sm border border-stone-200/50">
-                    &copy; <script>document.write(new Date().getFullYear())</script> Tristan GIRAUD. Tous droits réservés.
-                </p>
-            </footer>
-
         </div>
     </main>
+
+    <!-- ========================================== -->
+    <!-- DROITS D'AUTEUR FIXÉ (FOOTER) -->
+    <!-- ========================================== -->
+    <!-- Div fixée au bas de l'écran (ne bouge jamais) -->
+    <div class="fixed bottom-20 md:bottom-4 left-0 right-0 md:left-72 z-30 flex justify-center pointer-events-none">
+        <p class="pointer-events-auto text-stone-800 text-[10px] md:text-xs font-bold bg-white/90 backdrop-blur-md px-4 py-2 rounded-full shadow-lg border border-stone-200/50">
+            &copy; <script>document.write(new Date().getFullYear())</script> Tristan GIRAUD. Tous droits réservés.
+        </p>
+    </div>
 
     <!-- ========================================== -->
     <!-- ICÔNES FLOTTANTES (CONTACT RAPIDE) -->
     <!-- ========================================== -->
     <div class="fixed z-50 right-4 bottom-24 md:right-8 md:bottom-8 flex flex-col gap-4 animate-fadeIn">
-        <!-- Icône LinkedIn -->
-        <a href="https://www.linkedin.com/in/tristan-giraud01" target="_blank" class="w-12 h-12 md:w-14 md:h-14 bg-[#0A66C2] text-white rounded-full flex items-center justify-center shadow-[0_8px_30px_rgb(0,0,0,0.3)] hover:scale-110 hover:-translate-y-1 transition-all group relative border-2 border-white/20">
+        <a href="https://www.linkedin.com/in/tristan-giraud01" target="_blank" class="w-12 h-12 md:w-14 md:h-14 bg-[#0A66C2] text-white rounded-full flex items-center justify-center shadow-[0_8px_30px_rgb(0,0,0,0.3)] hover:scale-110 transition-all group relative border-2 border-white/20">
             <i class="fa-brands fa-linkedin-in text-xl md:text-2xl"></i>
             <span class="absolute right-full mr-4 bg-stone-900 text-white text-xs px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none font-bold">Mon LinkedIn</span>
         </a>
-        <!-- Icône Gmail -->
-        <a href="mailto:tristan.giraud01@gmail.com" class="w-12 h-12 md:w-14 md:h-14 bg-[#EA4335] text-white rounded-full flex items-center justify-center shadow-[0_8px_30px_rgb(0,0,0,0.3)] hover:scale-110 hover:-translate-y-1 transition-all group relative border-2 border-white/20">
+        <a href="mailto:tristan.giraud01@gmail.com" class="w-12 h-12 md:w-14 md:h-14 bg-[#EA4335] text-white rounded-full flex items-center justify-center shadow-[0_8px_30px_rgb(0,0,0,0.3)] hover:scale-110 transition-all group relative border-2 border-white/20">
             <i class="fa-solid fa-envelope text-xl md:text-2xl"></i>
             <span class="absolute right-full mr-4 bg-stone-900 text-white text-xs px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none font-bold">M'envoyer un email</span>
         </a>
-        <!-- Icône Téléphone -->
-        <a href="tel:+33613686874" class="w-12 h-12 md:w-14 md:h-14 bg-[#34A853] text-white rounded-full flex items-center justify-center shadow-[0_8px_30px_rgb(0,0,0,0.3)] hover:scale-110 hover:-translate-y-1 transition-all group relative border-2 border-white/20">
+        <a href="tel:+33613686874" class="w-12 h-12 md:w-14 md:h-14 bg-[#34A853] text-white rounded-full flex items-center justify-center shadow-[0_8px_30px_rgb(0,0,0,0.3)] hover:scale-110 transition-all group relative border-2 border-white/20">
             <i class="fa-solid fa-phone text-xl md:text-2xl"></i>
             <span class="absolute right-full mr-4 bg-stone-900 text-white text-xs px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none font-bold">M'appeler</span>
         </a>
@@ -835,14 +826,12 @@
         let slideInterval;
         let currentSlideIndex = 0;
 
-        // Fonction pour initialiser et lancer le diaporama pour l'onglet actif
         function initSlideshow(tabId) {
             const container = document.getElementById('slideshow-container');
             const images = tabBackgrounds[tabId];
             
             if (!images) return;
 
-            // Insère les nouvelles images dans le HTML
             let html = '';
             images.forEach((url, index) => {
                 html += `<div class="bg-slide ${index === 0 ? 'active' : ''}" style="background-image: url('${url}')"></div>`;
@@ -850,11 +839,8 @@
             container.innerHTML = html;
             
             currentSlideIndex = 0;
-            
-            // Nettoie l'ancien timer pour éviter les bugs
             clearInterval(slideInterval);
             
-            // Lance la transition toutes les 5 secondes très exactement
             slideInterval = setInterval(() => {
                 const slides = container.querySelectorAll('.bg-slide');
                 if (slides.length > 0) {
@@ -865,29 +851,18 @@
             }, 5000); 
         }
 
-        // Fonction pour changer d'onglet
         function switchTab(tabId) {
-            // Cacher tous les contenus
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-            // Afficher le contenu ciblé
             document.getElementById('tab-' + tabId).classList.add('active');
 
-            // Retirer la classe active de tous les boutons
             document.querySelectorAll('.nav-btn-mobile, .nav-btn-desktop').forEach(el => el.classList.remove('active'));
-            
-            // Ajouter la classe active aux boutons du tab actuel
             document.getElementById('mob-btn-' + tabId).classList.add('active');
             document.getElementById('desk-btn-' + tabId).classList.add('active');
             
-            // Lancer le nouveau diaporama de fond correspondant à l'onglet
             initSlideshow(tabId);
-
-            // Scroll en haut de la page lors du changement d'onglet
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Initialisation FORCÉE au démarrage
-        // Assure que le Javascript affiche bien les images dès le premier chargement de la page
         function forceStart() {
             const container = document.getElementById('slideshow-container');
             if (container && container.innerHTML === '') {
@@ -899,7 +874,6 @@
         window.addEventListener('load', forceStart);
         setTimeout(forceStart, 50);
 
-        // Fonctions pour les modales de projet
         function openModal(id) {
             document.getElementById('modal-' + id).classList.remove('hidden');
         }
