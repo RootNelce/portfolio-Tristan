@@ -46,18 +46,19 @@
             to { opacity: 1; }
         }
 
-        /* Nouvelles Animations d'entrée dynamiques "Balancier" (Gauche / Droite) */
+        /* Nouvelles Animations d'entrée dynamiques "Balancier" (Gauche / Droite) corrigées */
+        /* L'utilisation de "transform: none" à la fin de l'animation empêche les bugs d'affichage sur PC */
         @keyframes slideInLeft {
             from { opacity: 0; transform: translateX(-40px); }
-            to { opacity: 1; transform: translateX(0); }
+            to { opacity: 1; transform: none; }
         }
         @keyframes slideInRight {
             from { opacity: 0; transform: translateX(40px); }
-            to { opacity: 1; transform: translateX(0); }
+            to { opacity: 1; transform: none; }
         }
         @keyframes slideInUp {
             from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
+            to { opacity: 1; transform: none; }
         }
 
         /* Les animations s'activent uniquement quand l'onglet est 'active' */
@@ -305,10 +306,11 @@
                     </div>
 
                     <!-- COLONNE DROITE (Arrive par la droite) -->
+                    <!-- Retrait de la classe lg:sticky pour corriger les bugs d'affichage sur ordinateur -->
                     <div class="space-y-6 animate-slide-right delay-200">
                         <h4 class="text-xs sm:text-sm font-bold tracking-widest text-stone-500 uppercase mb-3 sm:mb-4 bg-white/95 backdrop-blur-sm px-3 py-1.5 inline-block rounded shadow-md border border-stone-200/50">Profil Personnel</h4>
                         
-                        <div class="bg-white/95 backdrop-blur-sm p-6 rounded-2xl shadow-xl border border-stone-200/50 space-y-6 lg:sticky lg:top-8">
+                        <div class="bg-white/95 backdrop-blur-sm p-6 rounded-2xl shadow-xl border border-stone-200/50 space-y-6">
                             <div>
                                 <h5 class="text-sm sm:text-base font-bold text-stone-900 flex items-center mb-3"><i class="fa-solid fa-star mr-2 text-amber-600"></i> Qualités</h5>
                                 <div class="flex flex-wrap gap-2">
