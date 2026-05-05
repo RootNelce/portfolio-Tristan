@@ -173,6 +173,7 @@
             <div id="tab-accueil" class="tab-content active animate-fadeIn space-y-10 md:space-y-12">
                 <header class="border-b pb-6 md:pb-8 border-stone-200/50 text-center md:text-left">
                     <div class="md:hidden w-24 h-24 mx-auto bg-stone-200 rounded-full flex items-center justify-center mb-4 shadow-inner border-2 border-amber-600/30 overflow-hidden">
+                        <!-- Image de profil prête pour GitHub -->
                         <img src="photo-profil.jpg" alt="Tristan Giraud" class="w-full h-full object-cover">
                     </div>
                     
@@ -191,7 +192,8 @@
                 </header>
 
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-10">
-                    <!-- Bio & Actions -->
+                    
+                    <!-- COLONNE GAUCHE : Résumé, Boutons & NOUVELLES COMPÉTENCES DÉTAILLÉES -->
                     <div class="lg:col-span-2 space-y-8">
                         <section>
                             <h4 class="text-xs font-bold tracking-widest text-stone-500 uppercase mb-3 md:mb-4 bg-white/95 backdrop-blur-sm px-3 py-1.5 inline-block rounded shadow-md border border-stone-200/50">Executive Summary</h4>
@@ -211,32 +213,82 @@
                                 Me contacter <i class="fa-solid fa-chevron-right ml-2 text-sm"></i>
                             </button>
                         </div>
-                    </div>
 
-                    <!-- Compétences, Langues, Loisirs, Qualités -->
-                    <div class="space-y-6">
-                        <h4 class="text-xs font-bold tracking-widest text-stone-500 uppercase mb-3 md:mb-4 bg-white/95 backdrop-blur-sm px-3 py-1.5 inline-block rounded shadow-md border border-stone-200/50">Profil & Compétences</h4>
-                        
-                        <div class="bg-white/95 backdrop-blur-sm p-6 rounded-2xl shadow-xl border border-stone-200/50 space-y-6">
+                        <!-- NOUVELLE SECTION COMPÉTENCES -->
+                        <section class="pt-6">
+                            <h4 class="text-xs font-bold tracking-widest text-stone-500 uppercase mb-4 bg-white/95 backdrop-blur-sm px-3 py-1.5 inline-block rounded shadow-md border border-stone-200/50">Mes Domaines d'Expertise</h4>
                             
-                            <!-- Section COMPÉTENCES -->
-                            <div>
-                                <h5 class="text-sm font-bold text-stone-900 flex items-center mb-3"><i class="fa-solid fa-laptop-code mr-2 text-amber-600"></i> Compétences</h5>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="px-2.5 py-1 bg-stone-100 text-stone-800 text-xs rounded-md font-semibold border border-stone-200">Réseau Informatique</span>
-                                    <span class="px-2.5 py-1 bg-stone-100 text-stone-800 text-xs rounded-md font-semibold border border-stone-200">Python, C#</span>
-                                    <span class="px-2.5 py-1 bg-stone-100 text-stone-800 text-xs rounded-md font-semibold border border-stone-200">HTML, CSS, JavaScript</span>
-                                    <span class="px-2.5 py-1 bg-stone-100 text-stone-800 text-xs rounded-md font-semibold border border-stone-200">Rédaction technique</span>
-                                    <span class="px-2.5 py-1 bg-stone-100 text-stone-800 text-xs rounded-md font-semibold border border-stone-200">DNS, DHCP</span>
-                                    <span class="px-2.5 py-1 bg-stone-100 text-stone-800 text-xs rounded-md font-semibold border border-stone-200">Utilisation de SSH</span>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <!-- Carte Support -->
+                                <div class="bg-white/95 backdrop-blur-sm p-6 rounded-2xl shadow-xl border border-stone-200/50 hover:-translate-y-1 transition-transform duration-300">
+                                    <h5 class="font-bold text-stone-900 mb-4 flex items-center border-b border-stone-200 pb-2"><i class="fa-solid fa-headset text-amber-600 mr-2 text-lg"></i> Support & Services IT</h5>
+                                    <ul class="text-[13px] text-stone-700 space-y-3 font-medium">
+                                        <li><strong class="text-stone-900 block">Gestion de parc :</strong> Utilisation d’OCS Inventory.</li>
+                                        <li><strong class="text-stone-900 block">Support & Incidents :</strong> Prog. C#, machines virtuelles, permissions et dépannage.</li>
+                                        <li><strong class="text-stone-900 block">Services Web :</strong> HTML/CSS/JS, PHP, WordPress, contrôle légal (propriété intellectuelle).</li>
+                                        <li><strong class="text-stone-900 block">Gestion de projet :</strong> MS Project et méthode Agile.</li>
+                                    </ul>
+                                </div>
+
+                                <!-- Carte Réseaux -->
+                                <div class="bg-white/95 backdrop-blur-sm p-6 rounded-2xl shadow-xl border border-stone-200/50 hover:-translate-y-1 transition-transform duration-300">
+                                    <h5 class="font-bold text-stone-900 mb-4 flex items-center border-b border-stone-200 pb-2"><i class="fa-solid fa-network-wired text-amber-600 mr-2 text-lg"></i> Admin. Systèmes & Réseaux</h5>
+                                    <ul class="text-[13px] text-stone-700 space-y-3 font-medium">
+                                        <li><strong class="text-stone-900 block">Conception :</strong> Architectures pro, VLAN, config IP, topologie, sécurité.</li>
+                                        <li><strong class="text-stone-900 block">Déploiement :</strong> Config équipements, tests connectivité, perf., mise en production.</li>
+                                        <li><strong class="text-stone-900 block">Exploitation :</strong> Maintenance, supervision, diagnostic avancé, monitoring.</li>
+                                    </ul>
+                                </div>
+
+                                <!-- Carte Cybersécurité -->
+                                <div class="bg-white/95 backdrop-blur-sm p-6 rounded-2xl shadow-xl border border-stone-200/50 hover:-translate-y-1 transition-transform duration-300">
+                                    <h5 class="font-bold text-stone-900 mb-4 flex items-center border-b border-stone-200 pb-2"><i class="fa-solid fa-shield-halved text-amber-600 mr-2 text-lg"></i> Cybersécurité</h5>
+                                    <ul class="text-[13px] text-stone-700 space-y-3 font-medium">
+                                        <li><strong class="text-stone-900 block">Conformité :</strong> Étude RGPD, contrôle d'accès, chiffrement.</li>
+                                        <li><strong class="text-stone-900 block">Identité :</strong> MFA, gestion comptes, protection usurpation.</li>
+                                        <li><strong class="text-stone-900 block">Infrastructure & Poste :</strong> Comparaison antivirus, IDS/IPS, sauvegardes, réponse incidents.</li>
+                                    </ul>
+                                </div>
+
+                                <!-- Carte Algorithmes -->
+                                <div class="bg-white/95 backdrop-blur-sm p-6 rounded-2xl shadow-xl border border-stone-200/50 hover:-translate-y-1 transition-transform duration-300">
+                                    <h5 class="font-bold text-stone-900 mb-4 flex items-center border-b border-stone-200 pb-2"><i class="fa-solid fa-code text-amber-600 mr-2 text-lg"></i> Création d’algorithmes</h5>
+                                    <ul class="text-[13px] text-stone-700 space-y-3 font-medium">
+                                        <li><strong class="text-stone-900 block">Fondamentaux :</strong> Logique de codage, pseudo-algorithmique, debug.</li>
+                                        <li><strong class="text-stone-900 block">Structures de données :</strong> Tableaux, parcours, tri.</li>
+                                        <li><strong class="text-stone-900 block">Modularisation :</strong> Fonctions personnalisées, organisation et optimisation du code.</li>
+                                    </ul>
+                                </div>
+
+                                <!-- Carte CEJM (Pleine largeur sur la grille) -->
+                                <div class="md:col-span-2 bg-white/95 backdrop-blur-sm p-6 rounded-2xl shadow-xl border border-stone-200/50 hover:-translate-y-1 transition-transform duration-300">
+                                    <h5 class="font-bold text-stone-900 mb-4 flex items-center border-b border-stone-200 pb-2"><i class="fa-solid fa-scale-balanced text-amber-600 mr-2 text-lg"></i> Culture Économique, Juridique et Managériale</h5>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <ul class="text-[13px] text-stone-700 space-y-3 font-medium">
+                                            <li><strong class="text-stone-900 block">Analyse & Stratégie :</strong> Enjeux économiques, risques juridiques, problématiques IT.</li>
+                                            <li><strong class="text-stone-900 block">Diagnostic & Décision :</strong> Identification forces/faiblesses, orientations stratégiques.</li>
+                                        </ul>
+                                        <ul class="text-[13px] text-stone-700 space-y-3 font-medium">
+                                            <li><strong class="text-stone-900 block">Ressources & Veille :</strong> Textes juridiques, données économiques et managériales.</li>
+                                            <li><strong class="text-stone-900 block">Communication :</strong> Recommandations structurées, présentation adaptée aux décideurs.</li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
+                        </section>
+                    </div>
+
+                    <!-- COLONNE DROITE : Qualités, Langues, Loisirs -->
+                    <div class="space-y-6">
+                        <h4 class="text-xs font-bold tracking-widest text-stone-500 uppercase mb-3 md:mb-4 bg-white/95 backdrop-blur-sm px-3 py-1.5 inline-block rounded shadow-md border border-stone-200/50">Profil Personnel</h4>
+                        
+                        <div class="bg-white/95 backdrop-blur-sm p-6 rounded-2xl shadow-xl border border-stone-200/50 space-y-6 sticky top-8">
                             
                             <!-- Section QUALITÉS -->
                             <div>
                                 <h5 class="text-sm font-bold text-stone-900 flex items-center mb-3"><i class="fa-solid fa-star mr-2 text-amber-600"></i> Qualités</h5>
                                 <div class="flex flex-wrap gap-2">
-                                    <span class="px-2.5 py-1 bg-amber-100 text-amber-900 text-xs rounded-md font-semibold border border-amber-200">Assidus</span>
+                                    <span class="px-2.5 py-1 bg-amber-100 text-amber-900 text-xs rounded-md font-semibold border border-amber-200">Assidu</span>
                                     <span class="px-2.5 py-1 bg-amber-100 text-amber-900 text-xs rounded-md font-semibold border border-amber-200">Sérieux</span>
                                     <span class="px-2.5 py-1 bg-amber-100 text-amber-900 text-xs rounded-md font-semibold border border-amber-200">Multitâche</span>
                                     <span class="px-2.5 py-1 bg-amber-100 text-amber-900 text-xs rounded-md font-semibold border border-amber-200">Polyvalent</span>
@@ -245,7 +297,7 @@
                             </div>
 
                             <!-- Section LANGUES ET LOISIRS -->
-                            <div class="grid grid-cols-2 gap-4 border-t border-stone-200 pt-5">
+                            <div class="grid grid-cols-1 gap-5 border-t border-stone-200 pt-5">
                                 <div>
                                     <h5 class="text-sm font-bold text-stone-900 flex items-center mb-3"><i class="fa-solid fa-language mr-2 text-amber-600"></i> Langues</h5>
                                     <ul class="text-xs text-stone-800 space-y-2 font-semibold">
@@ -253,7 +305,7 @@
                                         <li class="flex items-center"><i class="fa-solid fa-check text-amber-500 mr-2 text-[10px]"></i> Anglais</li>
                                     </ul>
                                 </div>
-                                <div>
+                                <div class="border-t border-stone-100 pt-4">
                                     <h5 class="text-sm font-bold text-stone-900 flex items-center mb-3"><i class="fa-solid fa-face-smile mr-2 text-amber-600"></i> Loisirs</h5>
                                     <ul class="text-xs text-stone-800 space-y-2 font-semibold">
                                         <li class="flex items-center"><i class="fa-solid fa-golf-ball-tee text-stone-400 mr-2 text-[10px]"></i> Golf</li>
@@ -375,7 +427,7 @@
                     </div>
                     <h3 class="text-xl md:text-2xl font-bold text-stone-900 mb-2">Un projet ? Une opportunité ?</h3>
                     <p class="text-stone-800 font-medium mb-6 max-w-xl">Ces réalisations vous interpellent ? N'hésitez pas à me contacter pour échanger sur mes compétences et mes futures missions.</p>
-                    <button onclick="switchTab('contact')" class="px-8 py-3.5 rounded-xl text-white font-bold transition-all shadow-md bg-amber-600 hover:bg-amber-700 flex items-center">
+                    <button onclick="switchTab('contact')" class="px-8 py-3.5 rounded-xl text-white font-bold transition-all shadow-md bg-amber-600 hover:bg-amber-700 hover:-translate-y-0.5 flex items-center">
                         <i class="fa-solid fa-paper-plane mr-2"></i> Discutons-en
                     </button>
                 </div>
@@ -493,7 +545,7 @@
                     </div>
                     <h3 class="text-xl md:text-2xl font-bold text-stone-900 mb-2">Travaillons ensemble</h3>
                     <p class="text-stone-800 font-medium mb-6 max-w-xl">Ces thématiques sont au cœur des enjeux actuels. N'hésitez pas à me contacter si vous souhaitez en discuter.</p>
-                    <button onclick="switchTab('contact')" class="px-8 py-3.5 rounded-xl text-white font-bold transition-all shadow-md bg-amber-600 hover:bg-amber-700 flex items-center">
+                    <button onclick="switchTab('contact')" class="px-8 py-3.5 rounded-xl text-white font-bold transition-all shadow-md bg-amber-600 hover:bg-amber-700 hover:-translate-y-0.5 flex items-center">
                         <i class="fa-solid fa-paper-plane mr-2"></i> Me Contacter
                     </button>
                 </div>
